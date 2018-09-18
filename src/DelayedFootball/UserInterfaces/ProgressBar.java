@@ -5,8 +5,9 @@
  */
 package DelayedFootball.UserInterfaces;
 
+import DelayedFootball.ActionListeners.DialogCloser;
 import DelayedFootball.ActionListeners.WindowClosingListener;
-import DelayedFootball.TestFantasy;
+import DelayedFootball.DelayedFantasyFootball;
 
 /**
  *
@@ -101,7 +102,7 @@ public class ProgressBar extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ProgressBar dialog = new ProgressBar(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new WindowClosingListener(TestFantasy.getDriver1(), TestFantasy.getDriver2())); 
+                dialog.addWindowListener(new DialogCloser()); 
                 dialog.setVisible(true);
             }
         }

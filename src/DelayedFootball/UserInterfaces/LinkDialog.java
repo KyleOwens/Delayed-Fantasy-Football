@@ -1,10 +1,7 @@
 package DelayedFootball.UserInterfaces;
 
-import DelayedFootball.TestFantasy;
-import java.io.BufferedWriter;
-import java.io.File;
+import DelayedFootball.Manager;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,9 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -41,6 +35,7 @@ public class LinkDialog extends javax.swing.JDialog {
     private DefaultListModel lm1;
     private HashMap<String, String> nameLinks;
     private static Connection con;
+    private Manager manager;
 
     public LinkDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -58,6 +53,11 @@ public class LinkDialog extends javax.swing.JDialog {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public LinkDialog(java.awt.Frame parent, boolean modal, Manager manager){
+        this(parent, modal);
+        this.manager = manager;
     }
 
     /**
@@ -226,8 +226,8 @@ public class LinkDialog extends javax.swing.JDialog {
 
     private void Launch(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Launch
         if (linkList.getSelectedValue() != null) {
-            TestFantasy.setUrl(nameLinks.get(linkList.getSelectedValue()));
-            TestFantasy.setDelay(Integer.parseInt(delaySelector.getSelectedItem().toString()));
+            manager.setUrl(nameLinks.get(linkList.getSelectedValue()));
+            manager.setDelay(Integer.parseInt(delaySelector.getSelectedItem().toString()));
             try {
                 con.close();
                 deleteLink.close();
@@ -243,8 +243,8 @@ public class LinkDialog extends javax.swing.JDialog {
     private void linkListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkListMouseClicked
         if (evt.getClickCount() == 2) {
             if (linkList.getSelectedValue() != null) {
-                TestFantasy.setUrl(nameLinks.get(linkList.getSelectedValue()));
-                TestFantasy.setDelay(Integer.parseInt(delaySelector.getSelectedItem().toString()));
+                manager.setUrl(nameLinks.get(linkList.getSelectedValue()));
+                manager.setDelay(Integer.parseInt(delaySelector.getSelectedItem().toString()));
                 this.setVisible(false);
                 this.dispose();
             }
