@@ -36,7 +36,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="scrollPane" pref="0" max="32767" attributes="0"/>
-                  <Component id="jScrollPane3" pref="822" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" pref="823" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -57,7 +57,6 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="gamePane2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="gamePane1" alignment="0" max="32767" attributes="0"/>
                           <Component id="gamePane3" alignment="0" max="32767" attributes="0"/>
                           <Component id="gamePane4" alignment="0" max="32767" attributes="0"/>
                           <Component id="gamePane5" alignment="0" max="32767" attributes="0"/>
@@ -72,6 +71,7 @@
                           <Component id="gamePane14" alignment="0" max="32767" attributes="0"/>
                           <Component id="gamePane15" alignment="0" max="32767" attributes="0"/>
                           <Component id="gamePane16" alignment="1" max="32767" attributes="0"/>
+                          <Component id="gamePane1" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -112,7 +112,7 @@
                       <Component id="gamePane15" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="gamePane16" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="109" max="32767" attributes="0"/>
+                      <EmptySpace pref="209" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -137,7 +137,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss1" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture1" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture1" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -162,7 +162,7 @@
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="gameTime1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="gameTime1" alignment="1" max="-2" attributes="0"/>
                                       <Component id="gamestatus1" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -184,29 +184,26 @@
                                           <Component id="gameTime1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo1" alignment="1" max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="teamName1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="score1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="teamName1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="score1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="teamLogo1" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName2" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score2" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo2" max="32767" attributes="0"/>
+                                              <Component id="teamLogo2" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture1" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture1" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss1" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -278,14 +275,8 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="teamLogo1">
-                  <Properties>
-                    <Property name="horizontalAlignment" type="int" value="4"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="teamLogo2">
-                  <Properties>
-                    <Property name="horizontalAlignment" type="int" value="4"/>
-                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -308,7 +299,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss2" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture2" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture2" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -359,7 +350,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo3" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo3" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName3" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score3" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -371,13 +362,13 @@
                                                   <Component id="teamName4" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score4" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo4" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo4" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture2" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture2" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss2" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -473,7 +464,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss3" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture3" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -524,7 +515,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo5" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo5" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName5" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score5" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -536,13 +527,13 @@
                                                   <Component id="teamName6" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score6" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo6" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo6" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture3" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture3" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss3" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -638,7 +629,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss4" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture4" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture4" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -689,7 +680,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo7" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo7" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName7" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score7" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -701,13 +692,13 @@
                                                   <Component id="teamName8" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score8" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo8" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo8" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture4" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture4" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss4" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -803,7 +794,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss5" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture5" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture5" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -854,7 +845,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo9" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo9" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName9" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score9" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -866,13 +857,13 @@
                                                   <Component id="teamName10" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score10" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo10" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo10" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture5" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture5" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss5" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -968,7 +959,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss6" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture6" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture6" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1019,7 +1010,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo11" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo11" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName11" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score11" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1031,13 +1022,13 @@
                                                   <Component id="teamName12" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score12" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo12" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo12" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture6" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture6" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss6" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1133,7 +1124,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss7" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture7" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture7" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1184,7 +1175,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo13" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo13" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName13" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score13" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1196,13 +1187,13 @@
                                                   <Component id="teamName14" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score14" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo14" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo14" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture7" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture7" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss7" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1298,7 +1289,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss8" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture8" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture8" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1349,7 +1340,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo15" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo15" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName15" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score15" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1361,13 +1352,13 @@
                                                   <Component id="teamName16" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score16" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo16" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo16" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture8" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture8" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss8" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1463,7 +1454,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss9" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture9" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture9" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1514,7 +1505,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo17" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo17" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName17" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score17" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1526,13 +1517,13 @@
                                                   <Component id="teamName18" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score18" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo18" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo18" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture9" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture9" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss9" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1628,7 +1619,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss10" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture10" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture10" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1679,7 +1670,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo19" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo19" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName19" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score19" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1691,13 +1682,13 @@
                                                   <Component id="teamName20" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score20" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo20" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo20" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture10" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture10" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss10" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1793,7 +1784,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss11" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture11" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture11" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1844,7 +1835,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo21" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo21" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName21" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score21" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1856,13 +1847,13 @@
                                                   <Component id="teamName22" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score22" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo22" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo22" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture11" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture11" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss11" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1958,7 +1949,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss12" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture12" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture12" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -2009,7 +2000,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo23" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo23" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName23" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score23" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2021,13 +2012,13 @@
                                                   <Component id="teamName24" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score24" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo24" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo24" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture12" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture12" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss12" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -2123,7 +2114,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss13" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture13" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture13" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -2174,7 +2165,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo25" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo25" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName25" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score25" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2186,13 +2177,13 @@
                                                   <Component id="teamName26" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score26" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo26" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo26" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture13" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture13" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss13" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -2288,7 +2279,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss14" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture14" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture14" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -2339,7 +2330,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo27" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo27" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName27" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score27" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2351,13 +2342,13 @@
                                                   <Component id="teamName28" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score28" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo28" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo28" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture14" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture14" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss14" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -2453,7 +2444,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss15" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture15" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture15" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -2504,7 +2495,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo29" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo29" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName29" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score29" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2516,13 +2507,13 @@
                                                   <Component id="teamName30" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score30" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo30" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo30" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture15" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture15" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss15" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -2618,7 +2609,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="poss16" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="possesionPicture16" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="possesionPicture16" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -2669,7 +2660,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="teamLogo31" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="teamLogo31" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="teamName31" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score31" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2681,13 +2672,13 @@
                                                   <Component id="teamName32" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="score32" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="teamLogo32" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="teamLogo32" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="possesionPicture16" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="possesionPicture16" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss16" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                               </Group>

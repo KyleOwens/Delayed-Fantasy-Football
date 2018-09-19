@@ -11,6 +11,7 @@ import DelayedFootball.ActionListeners.DialogCloser;
 import DelayedFootball.ActionListeners.ImageChanger;
 import DelayedFootball.ActionListeners.LabelChanger;
 import DelayedFootball.ActionListeners.LabelColorChanger;
+import DelayedFootball.ActionListeners.LabelVisibility;
 import DelayedFootball.ActionListeners.LastPlayListener;
 import DelayedFootball.ActionListeners.WindowClosingListener;
 import DelayedFootball.UserInterfaces.ErrorDialog;
@@ -852,6 +853,8 @@ public class Manager implements Runnable {
                 gamePanels.get(i).setImgY(y);
             } catch (Exception e) {
                 gamePanels.get(i).getPossLabel().setVisible(false);
+                gamePanels.get(i).setImgX(-1);
+                gamePanels.get(i).setImgY(-1);
                 continue;
             }
 
@@ -874,12 +877,25 @@ public class Manager implements Runnable {
                     t.setRepeats(false);
                     t.start();
 
+                    Timer tt = new Timer(delay, new LabelVisibility(gamePanels.get(i).getPossLabel(), true));
+                    tt.setRepeats(false);
+                    tt.start();
+
                     gamePanels.get(i).setImgX(x);
                     gamePanels.get(i).setImgY(y);
                 }
             } catch (Exception e) {
-                gamePanels.get(i).getPossLabel().setVisible(false);
-                continue;
+                if (gamePanels.get(i).getImgX() != -1 || gamePanels.get(i).getImgY() != -1) {
+                    Timer t = new Timer(delay, new LabelVisibility(gamePanels.get(i).getPossLabel(), false));
+                    t.setRepeats(false);
+                    t.start();
+
+                    Timer tt = new Timer(delay, new ImageChanger(null, gamePanels.get(i).getPossession()));
+                    tt.setRepeats(false);
+                    tt.start();
+                    gamePanels.get(i).setImgX(-1);
+                    gamePanels.get(i).setImgY(-1);
+                }
             }
 
         }

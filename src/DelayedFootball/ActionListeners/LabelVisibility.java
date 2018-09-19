@@ -7,33 +7,26 @@ package DelayedFootball.ActionListeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
  *
  * @author Kyle
  */
-public class ImageChanger implements ActionListener{
+public class LabelVisibility implements ActionListener{
 
-    private BufferedImage image;
     private JLabel label;
+    private boolean visible;
     
-    public ImageChanger(BufferedImage image, JLabel label) {
-        this.image = image;
+    public LabelVisibility(JLabel label, Boolean visible) {
         this.label = label;
+        this.visible = visible;
     }
 
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(image != null){
-            label.setIcon(new ImageIcon(image));
-        } else {
-            label.setIcon(null);
-        }
-        label.setVisible(true);
+        label.setVisible(visible);
     }
     
 }
