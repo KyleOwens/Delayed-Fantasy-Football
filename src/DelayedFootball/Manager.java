@@ -83,7 +83,6 @@ public class Manager implements Runnable {
         chromeOptions.addArguments("--mute-audio");
         url = "";
         mainFrame = new Fantasycast();
-
     }
 
     @Override
