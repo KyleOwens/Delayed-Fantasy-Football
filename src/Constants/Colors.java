@@ -12,7 +12,6 @@ import java.awt.Color;
  * @author Kyle
  */
 public class Colors {
-
     public static final Color DARKGREY = new Color(60, 63, 65);
     public static final Color BACKGROUND = new Color(60, 63, 65);
     public static final Color TEXTPANEBACKGROUND = new Color(69, 73, 74);

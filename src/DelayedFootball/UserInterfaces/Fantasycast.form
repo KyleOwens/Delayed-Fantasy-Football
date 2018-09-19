@@ -255,7 +255,7 @@
                     <Component class="javax.swing.JTextPane" name="lastPlay1">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="66" green="66" red="66" type="rgb"/>
+                          <Color blue="96" green="96" red="96" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="asdfasdfa"/>
                         <Property name="focusable" type="boolean" value="false"/>
@@ -346,7 +346,6 @@
                                           <Component id="gameTime2" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus2" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -366,7 +365,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture2" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss2" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -420,7 +419,7 @@
                     <Component class="javax.swing.JTextPane" name="lastPlay2">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="66" green="66" red="66" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="asdfasdfa"/>
                         <Property name="focusable" type="boolean" value="false"/>
@@ -511,7 +510,6 @@
                                           <Component id="gameTime3" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus3" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -531,7 +529,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture3" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss3" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -676,7 +674,6 @@
                                           <Component id="gameTime4" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus4" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -696,7 +693,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture4" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss4" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -841,7 +838,6 @@
                                           <Component id="gameTime5" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus5" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -861,7 +857,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture5" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss5" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -1006,7 +1002,6 @@
                                           <Component id="gameTime6" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus6" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1026,7 +1021,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture6" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss6" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -1171,7 +1166,6 @@
                                           <Component id="gameTime7" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus7" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1191,7 +1185,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture7" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss7" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -1336,7 +1330,6 @@
                                           <Component id="gameTime8" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus8" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1356,7 +1349,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture8" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss8" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -1501,7 +1494,6 @@
                                           <Component id="gameTime9" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus9" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1521,7 +1513,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture9" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss9" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -1666,7 +1658,6 @@
                                           <Component id="gameTime10" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus10" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1686,7 +1677,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture10" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss10" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -1831,7 +1822,6 @@
                                           <Component id="gameTime11" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus11" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1851,7 +1841,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture11" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss11" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -1996,7 +1986,6 @@
                                           <Component id="gameTime12" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus12" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -2016,7 +2005,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture12" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss12" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -2161,7 +2150,6 @@
                                           <Component id="gameTime13" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus13" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -2181,7 +2169,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture13" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss13" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -2326,7 +2314,6 @@
                                           <Component id="gameTime14" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus14" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -2346,7 +2333,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture14" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss14" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -2491,7 +2478,6 @@
                                           <Component id="gameTime15" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus15" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -2511,7 +2497,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture15" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss15" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
@@ -2656,7 +2642,6 @@
                                           <Component id="gameTime16" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="gamestatus16" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -2676,7 +2661,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="possesionPicture16" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="poss16" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
