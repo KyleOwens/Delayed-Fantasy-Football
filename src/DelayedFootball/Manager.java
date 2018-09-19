@@ -8,6 +8,7 @@ package DelayedFootball;
 import Constants.Colors;
 import DelayedFootball.ActionListeners.ColorChanger;
 import DelayedFootball.ActionListeners.DialogCloser;
+import DelayedFootball.ActionListeners.ImageChanger;
 import DelayedFootball.ActionListeners.LabelChanger;
 import DelayedFootball.ActionListeners.LabelColorChanger;
 import DelayedFootball.ActionListeners.LastPlayListener;
@@ -18,6 +19,7 @@ import DelayedFootball.UserInterfaces.LinkDialog;
 import DelayedFootball.UserInterfaces.NotificationDialog;
 import DelayedFootball.UserInterfaces.ProgressBar;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -76,7 +78,7 @@ public class Manager implements Runnable {
 
     public Manager() {
         chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
+        //chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--mute-audio");
         url = "";
         mainFrame = new Fantasycast();
@@ -136,6 +138,7 @@ public class Manager implements Runnable {
                 frame.setContentPane(frame.getContentPane());
                 frame.addWindowListener(new WindowClosingListener(fantasycast, scoreAlerts));
                 frame.setTitle("ESPN Delayed Fantasycast");
+                frame.setIconImage(Toolkit.getDefaultToolkit().createImage("Icon.png"));
                 frame.pack();
                 frame.setVisible(true);
             }
@@ -159,6 +162,8 @@ public class Manager implements Runnable {
                 checkForGameUpdates(gamePanels, doc);
                 checkForPlayerUpdates(playerPanels, infoPanels, doc);
                 checkForScoringNotification(scoreAlerts);
+                checkForTeamLogoUpdate(gamePanels, doc);
+                checkForPossessionUpdate(gamePanels, doc);
                 Thread.sleep(50);
             } catch (Exception e) {
                 break;
@@ -250,7 +255,7 @@ public class Manager implements Runnable {
         setUpPlayers(playerPanels, infoPanels, doc);
     }
 
-    public static void setUpGames(ArrayList<GamePanel> gamePanels, Document doc) {
+    public void setUpGames(ArrayList<GamePanel> gamePanels, Document doc) {
         //select the home and away teams by their class
         Elements awayTeamNames = doc.getElementsByClass("away-abbrev");
         Elements homeTeamNames = doc.getElementsByClass("home-abbrev");
@@ -324,7 +329,7 @@ public class Manager implements Runnable {
         }
     }
 
-    public static void setUpPlayers(ArrayList<PlayerPanel> playerPanels, ArrayList<TeamInfoPanel> infoPanels, Document doc) {
+    public void setUpPlayers(ArrayList<PlayerPanel> playerPanels, ArrayList<TeamInfoPanel> infoPanels, Document doc) {
 
         //grab the fantasy team names and set them
         Elements info;
@@ -416,7 +421,7 @@ public class Manager implements Runnable {
         }
     }
 
-    public static void checkForGameUpdates(ArrayList<GamePanel> gamePanels, Document doc) {
+    public void checkForGameUpdates(ArrayList<GamePanel> gamePanels, Document doc) {
         //select the last plays
         Elements selected = doc.getElementsByClass("ref-parent");
 
@@ -548,7 +553,7 @@ public class Manager implements Runnable {
 
     }
 
-    public static void checkForPlayerUpdates(ArrayList<PlayerPanel> playerPanels, ArrayList<TeamInfoPanel> infoPanels, Document doc) {
+    public void checkForPlayerUpdates(ArrayList<PlayerPanel> playerPanels, ArrayList<TeamInfoPanel> infoPanels, Document doc) {
 
         //select left to play 
         Elements info;
@@ -685,13 +690,27 @@ public class Manager implements Runnable {
         }
     }
 
-    public static void prepareScrollPane(JScrollPane pane) {
+    public void prepareScrollPane(JScrollPane pane) {
         pane.getVerticalScrollBar().setUnitIncrement(16);
         pane.getVerticalScrollBar().setBackground(Colors.DARKGREY);
         pane.getVerticalScrollBar().setForeground(Colors.DARKGREY);
     }
 
-    public static void setupGameState(String gameState, JLabel name, JLabel game, JLabel score, JLabel stats, int i) {
+    public void removeUnusedPanels(ArrayList<JPanel> panels, ArrayList<JTextPane> plays) {
+        //check if a panel is being used, and if not, get rid of it
+        try {
+            for (int i = 0; i < plays.size(); i++) {
+                if (plays.get(i).getText().equals("")) {
+                    panels.get(i).setVisible(false);
+                    //panels.remove(i);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setupGameState(String gameState, JLabel name, JLabel game, JLabel score, JLabel stats, int i) {
         if (gameState.contains("activegame") && i < 18) {
             name.setForeground(Color.WHITE);
             score.setForeground(Color.WHITE);
@@ -715,7 +734,7 @@ public class Manager implements Runnable {
         }
     }
 
-    public static void setupPlayerState(String className, JPanel panel) {
+    public void setupPlayerState(String className, JPanel panel) {
         if (className.contains("playerOFFENSE") && !className.contains("playerREDZONE")) {
             panel.setBackground(Colors.OFFENSE);
         } else if (className.contains("playerDEFENSE") && !className.contains("playerREDZONE")) {
@@ -727,7 +746,7 @@ public class Manager implements Runnable {
         }
     }
 
-    public static void setJTextPane(JTextPane jtp, ArrayList<String> parts, ArrayList<String> compareNames, ArrayList<String> compareNames2) {
+    public void setJTextPane(JTextPane jtp, ArrayList<String> parts, ArrayList<String> compareNames, ArrayList<String> compareNames2) {
         //clear the text
         jtp.setText("");
 
@@ -785,7 +804,7 @@ public class Manager implements Runnable {
 
     }
 
-    public static void setPlayerImages(ArrayList<PlayerPanel> playerPanels, Document doc) {
+    public void setPlayerImages(ArrayList<PlayerPanel> playerPanels, Document doc) {
         Elements imageSelector = doc.getElementsByClass("playerPhotoWrapper");
 
         int j = 0;
@@ -818,7 +837,7 @@ public class Manager implements Runnable {
         }
     }
 
-    public static void setPossesionIcons(ArrayList<GamePanel> gamePanels, Document doc) throws IOException {
+    public void setPossesionIcons(ArrayList<GamePanel> gamePanels, Document doc) throws IOException {
         for (int i = 0; i < gamePanels.size(); i++) {
             try {
                 String baseString = doc.getElementsByClass("logo").get(i).attr("style").toString();
@@ -829,6 +848,8 @@ public class Manager implements Runnable {
                 BufferedImage crop = source.getSubimage(x, y, 30, 25);
 
                 gamePanels.get(i).getPossession().setIcon(new ImageIcon(crop));
+                gamePanels.get(i).setImgX(x);
+                gamePanels.get(i).setImgY(y);
             } catch (Exception e) {
                 gamePanels.get(i).getPossLabel().setVisible(false);
                 continue;
@@ -838,7 +859,34 @@ public class Manager implements Runnable {
 
     }
 
-    public static void setTeamLogos(ArrayList<GamePanel> gamePanels, Document doc) throws IOException {
+    public void checkForPossessionUpdate(ArrayList<GamePanel> gamePanels, Document doc) throws IOException {
+        for (int i = 0; i < gamePanels.size(); i++) {
+            try {
+                String baseString = doc.getElementsByClass("logo").get(i).attr("style").toString();
+                int x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
+                int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
+
+                if (gamePanels.get(i).getImgX() != x || gamePanels.get(i).getImgY() != y) {
+                    BufferedImage source = ImageIO.read(new File("Logos.png"));
+                    BufferedImage crop = source.getSubimage(x, y, 30, 25);
+
+                    Timer t = new Timer(delay, new ImageChanger(crop, gamePanels.get(i).getPossession()));
+                    t.setRepeats(false);
+                    t.start();
+
+                    gamePanels.get(i).setImgX(x);
+                    gamePanels.get(i).setImgY(y);
+                }
+            } catch (Exception e) {
+                gamePanels.get(i).getPossLabel().setVisible(false);
+                continue;
+            }
+
+        }
+
+    }
+
+    public void setTeamLogos(ArrayList<GamePanel> gamePanels, Document doc) throws IOException {
         int j = 0;
         for (int i = 0; i < 32; i += 2) {
             try {
@@ -849,6 +897,8 @@ public class Manager implements Runnable {
                 BufferedImage source = ImageIO.read(new File("TeamLogos.png"));
                 BufferedImage crop = source.getSubimage(x, y, 12, 12);
 
+                gamePanels.get(j).setAwayIconX(x);
+                gamePanels.get(j).setAwayIconY(y);
                 gamePanels.get(j).getAwayLogo().setIcon(new ImageIcon(crop));
 
                 baseString = doc.getElementsByClass("team-logo").get(i + 1).attr("Style").toString();
@@ -858,6 +908,8 @@ public class Manager implements Runnable {
                 source = ImageIO.read(new File("TeamLogos.png"));
                 crop = source.getSubimage(x, y, 12, 12);
 
+                gamePanels.get(j).setHomeIconX(x);
+                gamePanels.get(j).setHomeIconY(y);
                 gamePanels.get(j).getHomeLogo().setIcon(new ImageIcon(crop));
                 j++;
             } catch (Exception e) {
@@ -866,7 +918,104 @@ public class Manager implements Runnable {
         }
     }
 
-    public static void createNotification(String team1, String team2, String score1, String score2, String notificationText, String gameStatus) {
+    public void checkForTeamLogoUpdate(ArrayList<GamePanel> gamePanels, Document doc) throws IOException {
+        int j = 0;
+        for (int i = 0; i < 32; i += 2) {
+            try {
+                String baseString = doc.getElementsByClass("team-logo").get(i).attr("Style").toString();
+                int x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
+                int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
+
+                if (gamePanels.get(j).getAwayIconX() != x || gamePanels.get(j).getAwayIconY() != y) {
+                    BufferedImage source = ImageIO.read(new File("TeamLogos.png"));
+                    BufferedImage crop = source.getSubimage(x, y, 12, 12);
+
+                    Timer t = new Timer(delay, new ImageChanger(crop, gamePanels.get(j).getAwayLogo()));
+                    t.setRepeats(false);
+                    t.start();
+
+                    gamePanels.get(j).setAwayIconX(x);
+                    gamePanels.get(j).setAwayIconY(y);
+                }
+
+                baseString = doc.getElementsByClass("team-logo").get(i + 1).attr("Style").toString();
+                x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
+                y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
+
+                if (gamePanels.get(j).getHomeIconX() != x || gamePanels.get(j).getHomeIconY() != y) {
+                    BufferedImage source = ImageIO.read(new File("TeamLogos.png"));
+                    BufferedImage crop = source.getSubimage(x, y, 12, 12);
+
+                    Timer t = new Timer(delay, new ImageChanger(crop, gamePanels.get(j).getHomeLogo()));
+                    t.setRepeats(false);
+                    t.start();
+
+                    gamePanels.get(j).setHomeIconX(x);
+                    gamePanels.get(j).setHomeIconY(y);
+                }
+                j++;
+            } catch (Exception e) {
+                continue;
+            }
+        }
+    }
+
+    public void updateGameState(String gameState, JLabel name, JLabel game, JLabel score, JLabel stats, int i) {
+        if (gameState.contains("activegame") && i < 18) { //&& 
+            if (!name.getForeground().equals(Color.WHITE)) {
+                //System.out.println("Making a change 23");
+                startLabelColorChange(name, Color.WHITE);
+                startLabelColorChange(score, Color.WHITE);
+                startLabelColorChange(game, Colors.ACTIVEYELLOW);
+                startLabelColorChange(stats, Color.WHITE);
+            }
+        } else if (gameState.contains("completedgame") && i < 18) {
+            if (!score.getForeground().equals(Colors.POSTYELLOW)) {
+                //System.out.println("Making a comlpeted game change 24");
+                startLabelColorChange(name, Colors.PREGREY);
+                startLabelColorChange(score, Colors.POSTYELLOW);
+                startLabelColorChange(game, Colors.PREYELLOW);
+                startLabelColorChange(stats, Colors.PREGREY);
+            }
+        } else {
+            if (!score.getForeground().equals(Colors.PREGREY)) {
+                //System.out.println("Making a change 24");
+                startLabelColorChange(name, Colors.PREGREY);
+                startLabelColorChange(score, Colors.PREGREY);
+                startLabelColorChange(stats, Colors.PREGREY);
+                if (i < 18) {
+                    startLabelColorChange(game, Colors.PREYELLOW);
+                } else {
+                    startLabelColorChange(game, Colors.PREGREY);
+                }
+            }
+
+        }
+    }
+
+    public void updatePlayerState(String className, JPanel panel) {
+        if (className.contains("playerOFFENSE") && !className.contains("playerREDZONE")) {
+            if (!panel.getBackground().equals(Colors.OFFENSE)) {
+                startColorChange(panel, Colors.OFFENSE);
+                //System.out.println("Making a change 13");
+            }
+        } else if (className.contains("playerDEFENSE") && !className.contains("playerREDZONE")) {
+            if (!panel.getBackground().equals(Colors.DEFENSE)) {
+                startColorChange(panel, Colors.DEFENSE);
+                //System.out.println("Making a change 14");
+            }
+        } else if (className.contains("playerREDZONE")) {
+            if (!panel.getBackground().equals(Colors.REDZONE)) {
+                startColorChange(panel, Colors.REDZONE);
+                //System.out.println("Making a change 15");
+            }
+        } else if (!panel.getBackground().equals(Colors.DARKGREY)) {
+            startColorChange(panel, Colors.DARKGREY);
+            //System.out.println("Making a change 17");
+        }
+    }
+
+    public void createNotification(String team1, String team2, String score1, String score2, String notificationText, String gameStatus) {
         Timer t1 = new Timer(delay, (ActionEvent e) -> {
             JDialog notification = new NotificationDialog(mainFrame, false, team1, team2, score1, score2, notificationText, gameStatus);
             notification.setLocation(mainFrame.getX() + mainFrame.getWidth() - notification.getWidth(), mainFrame.getY() + mainFrame.getHeight() - notification.getHeight());
@@ -881,7 +1030,7 @@ public class Manager implements Runnable {
         t1.start();
     }
 
-    public static void checkForScoringNotification(WebDriver d2) {
+    public void checkForScoringNotification(WebDriver d2) {
 
         Document doc1 = Jsoup.parse(d2.getPageSource());
         try {
@@ -915,7 +1064,7 @@ public class Manager implements Runnable {
         }
     }
 
-    public static void startLabelChange(JLabel label, String change) {
+    public void startLabelChange(JLabel label, String change) {
         Timer t = new Timer(delay, new LabelChanger(label, change));
         t.setRepeats(false);
         t.start();
@@ -933,72 +1082,4 @@ public class Manager implements Runnable {
         t.start();
     }
 
-    public static void updateGameState(String gameState, JLabel name, JLabel game, JLabel score, JLabel stats, int i) {
-        if (gameState.contains("activegame") && i < 18) { //&& 
-            if (!name.getForeground().equals(Color.WHITE)) {
-                System.out.println("Making a change 23");
-                startLabelColorChange(name, Color.WHITE);
-                startLabelColorChange(score, Color.WHITE);
-                startLabelColorChange(game, Colors.ACTIVEYELLOW);
-                startLabelColorChange(stats, Color.WHITE);
-            }
-        } else if (gameState.contains("completedgame") && i < 18) {
-            if (!score.getForeground().equals(Colors.POSTYELLOW)) {
-                System.out.println("Making a comlpeted game change 24");
-                startLabelColorChange(name, Colors.PREGREY);
-                startLabelColorChange(score, Colors.POSTYELLOW);
-                startLabelColorChange(game, Colors.PREYELLOW);
-                startLabelColorChange(stats, Colors.PREGREY);
-            }
-        } else {
-            if (!score.getForeground().equals(Colors.PREGREY)) {
-                System.out.println("Making a change 24");
-                startLabelColorChange(name, Colors.PREGREY);
-                startLabelColorChange(score, Colors.PREGREY);
-                startLabelColorChange(stats, Colors.PREGREY);
-                if (i < 18) {
-                    startLabelColorChange(game, Colors.PREYELLOW);
-                } else {
-                    startLabelColorChange(game, Colors.PREGREY);
-                }
-            }
-
-        }
-    }
-
-    public static void updatePlayerState(String className, JPanel panel) {
-        if (className.contains("playerOFFENSE") && !className.contains("playerREDZONE")) {
-            if (!panel.getBackground().equals(Colors.OFFENSE)) {
-                startColorChange(panel, Colors.OFFENSE);
-                //System.out.println("Making a change 13");
-            }
-        } else if (className.contains("playerDEFENSE") && !className.contains("playerREDZONE")) {
-            if (!panel.getBackground().equals(Colors.DEFENSE)) {
-                startColorChange(panel, Colors.DEFENSE);
-                //System.out.println("Making a change 14");
-            }
-        } else if (className.contains("playerREDZONE")) {
-            if (!panel.getBackground().equals(Colors.REDZONE)) {
-                startColorChange(panel, Colors.REDZONE);
-                //System.out.println("Making a change 15");
-            }
-        } else if (!panel.getBackground().equals(Colors.DARKGREY)) {
-            startColorChange(panel, Colors.DARKGREY);
-            //System.out.println("Making a change 17");
-        }
-    }
-
-    public static void removeUnusedPanels(ArrayList<JPanel> panels, ArrayList<JTextPane> plays) {
-        //check if a panel is being used, and if not, get rid of it
-        try {
-            for (int i = 0; i < plays.size(); i++) {
-                if (plays.get(i).getText().equals("")) {
-                    panels.get(i).setVisible(false);
-                    //panels.remove(i);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

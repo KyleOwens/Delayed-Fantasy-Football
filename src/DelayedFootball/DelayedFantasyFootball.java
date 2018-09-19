@@ -9,6 +9,7 @@ import DelayedFootball.UserInterfaces.ErrorDialog;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -19,7 +20,7 @@ public class DelayedFantasyFootball {
     public static void main(String[] args) throws IOException {
         try {
             UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel");
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
             ErrorDialog ed = new ErrorDialog(new JFrame(), true);
             ed.setText(e.getMessage());
             ed.setVisible(true);

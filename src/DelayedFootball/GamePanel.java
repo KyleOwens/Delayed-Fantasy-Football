@@ -24,6 +24,14 @@ public class GamePanel {
     private String gameStatus;
     private String lastPlay;
     
+    private int imgX;
+    private int imgY;
+    private int awayIconX;
+    private int awayIconY;
+    private int homeIconX;
+    private int homeIconY;
+    
+    
     private JLabel awayTeamLabel;
     private JLabel homeTeamLabel;
     private JLabel awayScoreLabel;
@@ -56,6 +64,8 @@ public class GamePanel {
     }
     
     private void init(){
+        imgX = 0;
+        imgY = 0;
         awayTeamLabel.setForeground(Color.white);
         homeTeamLabel.setForeground(Color.white); 
         awayScoreLabel.setForeground(Color.white);
@@ -169,6 +179,54 @@ public class GamePanel {
 
     public JLabel getPossLabel() {
         return possLabel;
+    }
+
+    public int getImgX() {
+        return imgX;
+    }
+
+    public void setImgX(int imgX) {
+        this.imgX = imgX;
+    }
+
+    public int getImgY() {
+        return imgY;
+    }
+
+    public void setImgY(int imgY) {
+        this.imgY = imgY;
+    }
+
+    public int getAwayIconX() {
+        return awayIconX;
+    }
+
+    public void setAwayIconX(int awayIconX) {
+        this.awayIconX = awayIconX;
+    }
+
+    public int getAwayIconY() {
+        return awayIconY;
+    }
+
+    public void setAwayIconY(int awayIconY) {
+        this.awayIconY = awayIconY;
+    }
+
+    public int getHomeIconX() {
+        return homeIconX;
+    }
+
+    public void setHomeIconX(int homeIconX) {
+        this.homeIconX = homeIconX;
+    }
+
+    public int getHomeIconY() {
+        return homeIconY;
+    }
+
+    public void setHomeIconY(int homeIconY) {
+        this.homeIconY = homeIconY;
     }
     
     
