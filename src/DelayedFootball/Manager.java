@@ -79,7 +79,7 @@ public class Manager implements Runnable {
 
     public Manager() {
         chromeOptions = new ChromeOptions();
-        //chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--mute-audio");
         url = "";
         mainFrame = new Fantasycast();
