@@ -5,6 +5,8 @@
  */
 package DelayedFootball;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -26,6 +28,8 @@ public class WebNavigator {
     private Document doc;
 
     public WebNavigator() {
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+
         chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--mute-audio");
@@ -33,6 +37,11 @@ public class WebNavigator {
         fantasycast = new ChromeDriver(chromeOptions);
         scoreAlerts = new ChromeDriver(chromeOptions);
         scoreAlerts.get("http://games.espn.com/ffl/scoreboard?leagueId=19116&seasonId=2018");
+    }
+
+    public void closeDrivers() {
+        fantasycast.close();
+        scoreAlerts.close();
     }
 
     public void setUrl(String url) {
@@ -48,8 +57,7 @@ public class WebNavigator {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            fantasycast.close();
-            scoreAlerts.close();
+            closeDrivers();
         }
     }
 
@@ -70,6 +78,11 @@ public class WebNavigator {
         }
 
         return lastNotification;
+    }
+
+    public Elements getNotificationInfo() {
+        Document temp = Jsoup.parse(scoreAlerts.getPageSource());
+        return temp.select("div#toastDiv");
     }
 
     public String getAwayTeamName(int i) {
@@ -139,70 +152,86 @@ public class WebNavigator {
     public String getDownDistance(int i) {
         Elements status = doc.getElementsByClass("situation");
         String downDist = "Game not active";
-        try{
+        try {
             downDist = status.get(i).getElementsByClass("down-distance").get(0).text();
-        } catch(Exception e){
-            
+        } catch (Exception e) {
+
         }
 
         return downDist;
     }
-    
-    public String getTeamName(int i){
+
+    public String getFantasyTeamName(int i) {
         Elements teamNames = doc.getElementsByClass("teamName");
-        return teamNames.get(i).text();        
+        return teamNames.get(i).text();
     }
-    
-    public String getOwner(int i){
+
+    public String getFantasyOwner(int i) {
         Elements owners = doc.getElementsByClass("owners");
         return owners.get(i).text();
     }
-    
-    public String getToPlay(int i){
+
+    public String getToPlay(int i) {
         Elements ytp = doc.select("span[id^=team_ytp]");
         return "To Play: " + ytp.get(i).text();
     }
-    
-    public String getInPlay(int i){
+
+    public String getInPlay(int i) {
         Elements ip = doc.select("span[id^=team_ip]");
-        return "In Play: " +ip.get(i).text();
+        return "In Play: " + ip.get(i).text();
     }
-    
-    public String getProjection(int i){
+
+    public String getProjection(int i) {
         Elements projs = doc.select("span[id^=team_liveproj]");
         return "Proj: " + projs.get(i).text();
     }
-    
-    public String getTotalScore(int i){
+
+    public String getTotalScore(int i) {
         return doc.getElementsByClass("points").get(i).getElementsByTag("span").get(0).text();
     }
-    
-    public String getPlayerName(int i, int slotPos){
+
+    public String getPlayerName(int i, int slotPos) {
         return doc.getElementsByClass("slot").get(i).getElementsByClass("playerName").get(slotPos).text();
     }
-    
-    public String getPlayerScore(int i, int slotPos){
+
+    public String getPlayerScore(int i, int slotPos) {
         return doc.getElementsByClass("slot").get(i).getElementsByTag("td").get(slotPos).text();
     }
-    
-    public String getPlayerState(int i, int slotPos){
-        return doc.getElementsByClass("slot").get(i).getElementsByTag("td").get(slotPos).text();
+
+    public String getPlayerState(int i, int slotPos) {
+        return doc.getElementsByClass("slot").get(i).getElementsByTag("td").get(slotPos).className();
     }
-    
-    public String getPlayerGameState(int i, int slotPos){
+
+    public String getPlayerGameState(int i, int slotPos) {
         return doc.getElementsByClass("slot").get(i).select("td[class^=player proteam]").get(slotPos).className();
     }
-    
-    public boolean containsET(int i, int slotPos){
+
+    public boolean containsET(int i, int slotPos) {
         return doc.getElementsByClass("slot").get(i).getElementsByClass("status").get(slotPos).text().contains("ET");
     }
-    
-    public String getPlayerGameTime(int i, int slotPos){
+
+    public String getPlayerStats(int i, int slotPos) {
         return doc.getElementsByClass("slot").get(i).getElementsByClass("playerstatsummary").get(slotPos).text();
     }
-    
-    public String getGameStatus(int i, int slotPos){
+
+    public String getGameStatus(int i, int slotPos) {
         return doc.getElementsByClass("slot").get(i).getElementsByClass("status").get(slotPos).getElementsByClass("gamestatus").get(0).text();
+    }
+
+    public URL getPlayerImage(int i) throws MalformedURLException {
+        return new URL(doc.getElementsByClass("playerPhotoWrapper").get(i).getElementsByTag("img").get(0).absUrl("src"));
+    }
+
+    public String getDefenseLogo(int i) {
+        return doc.getElementsByClass("playerPhotoWrapper").get(i).getElementsByClass("fantasy-team-logo").get(0).attr("style");
+    }
+
+    public String getPossessionIcon(int i) {
+        return doc.getElementsByClass("logo").get(i).attr("style").toString();
+    }
+
+    public String getTeamLogo(int i) {
+        return doc.getElementsByClass("team-logo").get(i).attr("Style").toString();
     }
 
 }

@@ -38,7 +38,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
@@ -58,13 +57,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
  */
 public class Manager implements Runnable {
 
-    private ChromeDriver fantasycast;
-    private ChromeDriver scoreAlerts;
-    private ChromeOptions chromeOptions;
-
-    private Document doc;
-
     private LinkDialog links;
+    private WebNavigator nav;
 
     private ArrayList<PlayerPanel> playerPanels = new ArrayList<>();
     private ArrayList<GamePanel> gamePanels = new ArrayList<>();
@@ -78,21 +72,15 @@ public class Manager implements Runnable {
     private static Fantasycast mainFrame;
 
     public Manager() {
-        chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
-        chromeOptions.addArguments("--mute-audio");
         url = "";
         mainFrame = new Fantasycast();
     }
 
     @Override
     public void run() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 
         new Thread(() -> {
-            fantasycast = new ChromeDriver(chromeOptions);
-            scoreAlerts = new ChromeDriver(chromeOptions);
-            scoreAlerts.get("http://games.espn.com/ffl/scoreboard?leagueId=19116&seasonId=2018");
+            nav = new WebNavigator();
         }).start();
 
         links = new LinkDialog(null, true, this);
@@ -104,24 +92,14 @@ public class Manager implements Runnable {
         ProgressBar progress = new ProgressBar(null, false);
         progress.setVisible(true);
 
-        try {
-            while (true) {
-                try {
-                    fantasycast.get(url);
-                    doc = Jsoup.parse(fantasycast.getPageSource());
-                    break;
-                } catch (NullPointerException ex) {
-                    continue;
-                }
+
+        while (true) {
+            try {
+                nav.setUrl(url);
+                break;
+            } catch (Exception e) {
+                continue;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            fantasycast.close();
-            scoreAlerts.close();
-            ErrorDialog ed = new ErrorDialog(new JFrame(), true);
-            ed.setText(e.getMessage());
-            ed.setVisible(true);
-            System.exit(0);
         }
 
         setupPanels();
@@ -136,7 +114,7 @@ public class Manager implements Runnable {
                 frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 frame.getContentPane().setBackground(new Color(60, 63, 65));
                 frame.setContentPane(frame.getContentPane());
-                frame.addWindowListener(new WindowClosingListener(fantasycast, scoreAlerts));
+                frame.addWindowListener(new WindowClosingListener(nav));
                 frame.setTitle("ESPN Delayed Fantasycast");
                 frame.setIconImage(Toolkit.getDefaultToolkit().createImage("Icon.png"));
                 frame.pack();
@@ -145,25 +123,16 @@ public class Manager implements Runnable {
 
         });
 
-        Document temp = Jsoup.parse(scoreAlerts.getPageSource());
-        try {
-            Elements tempE = temp.select("div#toastDiv");
-
-            if (!tempE.isEmpty()) {
-                lastNotification = tempE.select("span#toast_gameMessage").text();
-            }
-        } catch (Exception e) {
-
-        }
+        lastNotification = nav.getNotification();
 
         while (true) {
             try {
-                doc = Jsoup.parse(fantasycast.getPageSource());
-                checkForGameUpdates(gamePanels, doc);
-                checkForPlayerUpdates(playerPanels, infoPanels, doc);
-                checkForScoringNotification(scoreAlerts);
-                checkForTeamLogoUpdate(gamePanels, doc);
-                checkForPossessionUpdate(gamePanels, doc);
+                nav.updateDoc();
+                checkForGameUpdates(gamePanels);
+                checkForPlayerUpdates(playerPanels, infoPanels);
+                checkForScoringNotification();
+                checkForTeamLogoUpdate(gamePanels);
+                checkForPossessionUpdate(gamePanels);
                 Thread.sleep(50);
             } catch (Exception e) {
                 break;
@@ -172,8 +141,7 @@ public class Manager implements Runnable {
 
         //exit the driver before closing
         try {
-            fantasycast.quit();
-            scoreAlerts.quit();
+            nav.closeDrivers();
         } catch (Exception ex) {
 
         }
@@ -244,62 +212,45 @@ public class Manager implements Runnable {
         }
 
         try {
-            setPlayerImages(playerPanels, doc);
-            setTeamLogos(gamePanels, doc);
-            setPossesionIcons(gamePanels, doc);
+            setPlayerImages(playerPanels);
+            setTeamLogos(gamePanels);
+            setPossesionIcons(gamePanels);
         } catch (Exception e) {
             System.out.println("loading images failed");
         }
 
-        setUpGames(gamePanels, doc);
-        setUpPlayers(playerPanels, infoPanels, doc);
+        setUpGames(gamePanels);
+        setUpPlayers(playerPanels, infoPanels);
     }
 
-    public void setUpGames(ArrayList<GamePanel> gamePanels, Document doc) {
-        //select the home and away teams by their class
-        Elements awayTeamNames = doc.getElementsByClass("away-abbrev");
-        Elements homeTeamNames = doc.getElementsByClass("home-abbrev");
-        Elements awayScores = doc.getElementsByClass("away-score");
-        Elements homeScores = doc.getElementsByClass("home-score");
-        Elements lastPlays = doc.getElementsByClass("ref-parent");
-        Elements status = doc.getElementsByClass("situation");
+    public void setUpGames(ArrayList<GamePanel> gamePanels) {
 
         //set the team names up in the game scroll pane
-        int j = 0;
+        int j = 1;
         for (int i = 0; i < gamePanels.size(); i++) {
             try {
-                gamePanels.get(i).getAwayTeamLabel().setText(awayTeamNames.get(i).text());
-                gamePanels.get(i).getHomeTeamLabel().setText(homeTeamNames.get(i).text());
+                gamePanels.get(i).getAwayTeamLabel().setText(nav.getAwayTeamName(i));
+                gamePanels.get(i).getHomeTeamLabel().setText(nav.getHomeTeamName(i));
             } catch (IndexOutOfBoundsException e) {
                 continue;
             }
 
             try {
-                gamePanels.get(i).getAwayScoreLabel().setText(awayScores.get(j).text());
-                gamePanels.get(i).getHomeScoreLabel().setText(homeScores.get(j).text());
+                gamePanels.get(i).getAwayScoreLabel().setText(nav.getAwayScore(j));
+                gamePanels.get(i).getHomeScoreLabel().setText(nav.getHomeScore(j));
                 j += 2;
             } catch (IndexOutOfBoundsException e) {
                 continue;
             }
 
             try {
-                //figure out if any players in the last play are on your team or the opponent team
-                Elements names = lastPlays.get(i).getElementsByClass("your-player");
-                Elements names2 = lastPlays.get(i).getElementsByClass("opp-player");
 
                 //break down the last play into single words so that they can be comapred
-                ArrayList<String> parts = new ArrayList<>(Arrays.asList(lastPlays.get(i).text().split(" ")));
+                ArrayList<String> parts = new ArrayList<>(Arrays.asList(nav.getLastPlay(i).split(" ")));
 
                 //create and fill arraylists for your team and opponent team
-                ArrayList<String> compareNames = new ArrayList<>();
-                ArrayList<String> compareNames2 = new ArrayList<>();
-
-                for (Element el : names) {
-                    compareNames.add(el.text());
-                }
-                for (Element el : names2) {
-                    compareNames2.add(el.text());
-                }
+                ArrayList<String> compareNames = nav.getYourPlayers(i);
+                ArrayList<String> compareNames2 = nav.getOpponentPlayers(i);
 
                 //set up the last play text panes with the correct text, and correct highlighting
                 setJTextPane(gamePanels.get(i).getLastPlayPane(), parts, compareNames, compareNames2);
@@ -308,80 +259,54 @@ public class Manager implements Runnable {
             }
 
             try {
-                String situation = status.get(i).getElementsByClass("period").get(0).text();
-                String time = status.get(i).getElementsByClass("time").get(0).text();
+                String situation = nav.getSituation(i);
+                String time = nav.getTime(i);
 
-                if (situation.equals("")) {
-                    situation = status.get(i).getElementsByClass("time").get(0).text();
-                } else {
-                    gamePanels.get(i).getGameTimeLabel().setText(time + " " + situation);
-                }
-
+                gamePanels.get(i).getGameTimeLabel().setText(time + " " + situation);
             } catch (IndexOutOfBoundsException e) {
                 continue;
             }
 
-            try {
-                gamePanels.get(i).getGameStatusLabel().setText(status.get(i).getElementsByClass("down-distance").get(0).text());
-            } catch (Exception e) {
-                gamePanels.get(i).getGameStatusLabel().setText("Game Not Started");
-            }
+            gamePanels.get(i).getGameStatusLabel().setText(nav.getDownDistance(i));
+
         }
     }
 
-    public void setUpPlayers(ArrayList<PlayerPanel> playerPanels, ArrayList<TeamInfoPanel> infoPanels, Document doc) {
-
-        //grab the fantasy team names and set them
-        Elements info;
-        Elements points = doc.getElementsByClass("points");
-
+    public void setUpPlayers(ArrayList<PlayerPanel> playerPanels, ArrayList<TeamInfoPanel> infoPanels) {
         for (int i = 0; i < infoPanels.size(); i++) {
-            info = doc.getElementsByClass("teamName");
-            infoPanels.get(i).getTeamName().setText(info.get(i).text());
-
-            info = doc.getElementsByClass("owners");
-            infoPanels.get(i).getTeamOwner().setText(info.get(i).text());
-
-            info = doc.select("span[id^=team_ytp]");
-            infoPanels.get(i).getToPlay().setText("To Play: " + info.get(i).text());
-
-            info = doc.select("span[id^=team_ip]");
-            infoPanels.get(i).getInPlay().setText("In Play: " + info.get(i).text());
-
-            info = doc.select("span[id^=team_liveproj]");
-            infoPanels.get(i).getProjection().setText("Proj: " + info.get(i).text());
-
-            infoPanels.get(i).getTotalScore().setText(points.get(i).getElementsByTag("span").get(0).text());
+            infoPanels.get(i).getTeamName().setText(nav.getFantasyTeamName(i));
+            infoPanels.get(i).getTeamOwner().setText(nav.getFantasyOwner(i));
+            infoPanels.get(i).getToPlay().setText(nav.getToPlay(i));
+            infoPanels.get(i).getInPlay().setText(nav.getInPlay(i));
+            infoPanels.get(i).getProjection().setText(nav.getProjection(i));
+            infoPanels.get(i).getTotalScore().setText(nav.getTotalScore(i));
         }
-
-        //grab each row of players abd information
-        Elements slots = doc.getElementsByClass("slot");
 
         int j = 0;
         for (int i = 0; i < 33; i += 2) {
             //grab the two player names of the slot, and set them to each team
             try {
-                playerPanels.get(i).getName().setText(slots.get(j).getElementsByClass("playerName").get(0).text());
+                playerPanels.get(i).getName().setText(nav.getPlayerName(j, 0));
             } catch (IndexOutOfBoundsException eio) {
                 playerPanels.get(i).getName().setText("empty");
             }
 
             try {
-                playerPanels.get(i + 1).getName().setText(slots.get(j).getElementsByClass("playerName").get(1).text());
+                playerPanels.get(i + 1).getName().setText(nav.getPlayerName(j, 1));
             } catch (IndexOutOfBoundsException eio2) {
                 playerPanels.get(i + 1).getName().setText("empty");
             }
             //grab the two player scores and set them
-            playerPanels.get(i).getScore().setText(slots.get(j).getElementsByTag("td").get(1).text());
-            playerPanels.get(i + 1).getScore().setText(slots.get(j).getElementsByTag("td").get(6).text());
+            playerPanels.get(i).getScore().setText(nav.getPlayerScore(j, 1));
+            playerPanels.get(i + 1).getScore().setText(nav.getPlayerScore(j, 6));
 
             //check if a player is on offense/defense/redzone
-            String className1 = slots.get(j).getElementsByTag("td").get(0).className();
-            String className2 = slots.get(j).getElementsByTag("td").get(5).className();
+            String className1 = nav.getPlayerState(j, 0);
+            String className2 = nav.getPlayerState(j, 5);
 
             //check the state of the player - pregame, in game, or postgame
-            String playerGameState1 = slots.get(j).select("td[class^=player proteam]").get(0).className();
-            String playerGameState2 = slots.get(j).select("td[class^=player proteam]").get(1).className();
+            String playerGameState1 = nav.getPlayerGameState(j, 0);
+            String playerGameState2 = nav.getPlayerGameState(j, 1);
 
             //check the current state of player 1 and set correct highlighting
             setupPlayerState(className1, playerPanels.get(i).getPanel());
@@ -392,27 +317,27 @@ public class Manager implements Runnable {
             setupGameState(playerGameState2, playerPanels.get(i + 1).getName(), playerPanels.get(i + 1).getGame(), playerPanels.get(i + 1).getScore(), playerPanels.get(i + 1).getStats(), i);
 
             //check if the player1 game status has an eastern time in it and set it, if not, set it to blank
-            if (!slots.get(j).getElementsByClass("status").get(0).text().contains("ET")) {
-                playerPanels.get(i).getStats().setText(slots.get(j).getElementsByClass("playerstatsummary").get(0).text());
+            if (!nav.containsET(j, 0)) {
+                playerPanels.get(i).getStats().setText(nav.getPlayerStats(j, 0));
             } else {
                 playerPanels.get(i).getStats().setText(" ");
             }
 
             //check if the player2 game status has an eastern time in it and set it, if not, set it to blank
-            if (!slots.get(j).getElementsByClass("status").get(1).text().contains("ET")) {
-                playerPanels.get(i + 1).getStats().setText(slots.get(j).getElementsByClass("playerstatsummary").get(1).text());
+            if (!nav.containsET(j, 1)) {
+                playerPanels.get(i + 1).getStats().setText(nav.getPlayerStats(j, 0));
             } else {
                 playerPanels.get(i + 1).getStats().setText(" ");
             }
 
             try {
-                playerPanels.get(i).getGame().setText(slots.get(j).getElementsByClass("status").get(0).getElementsByClass("gamestatus").get(0).text());
+                playerPanels.get(i).getGame().setText(nav.getGameStatus(j, 0));
             } catch (Exception e1) {
                 playerPanels.get(i).getGame().setText(" ");
             }
 
             try {
-                playerPanels.get(i + 1).getGame().setText(slots.get(j).getElementsByClass("status").get(1).getElementsByClass("gamestatus").get(0).text());
+                playerPanels.get(i + 1).getGame().setText(nav.getGameStatus(j, 1));
             } catch (Exception e2) {
                 playerPanels.get(i + 1).getGame().setText(" ");
             }
@@ -421,37 +346,21 @@ public class Manager implements Runnable {
         }
     }
 
-    public void checkForGameUpdates(ArrayList<GamePanel> gamePanels, Document doc) {
-        //select the last plays
-        Elements selected = doc.getElementsByClass("ref-parent");
-
-        for (int i = 0; i < selected.size(); i++) {
+    public void checkForGameUpdates(ArrayList<GamePanel> gamePanels) {
+        for (int i = 0; i < gamePanels.size(); i++) {
             try {
-                //check if the play has changed
-
                 String compare = gamePanels.get(i).getLastPlayPane().getText();
                 compare = compare.replace("\n", "").replace("\r", "");
 
-                if (!compare.equals(selected.get(i).text())) {
-                    //check to see if anyone is on your/opponents team
-                    Elements names = selected.get(i).getElementsByClass("your-player");
-                    Elements names2 = selected.get(i).getElementsByClass("opp-player");
-
+                if (!compare.equals(nav.getLastPlay(i))) {
                     //break the last play down into single strings
-                    ArrayList<String> parts = new ArrayList<>(Arrays.asList(selected.get(i).text().split(" ")));
+                    ArrayList<String> parts = new ArrayList<>(Arrays.asList(nav.getLastPlay(i).split(" ")));
                     //create and fill arrays for player names on teams
-                    ArrayList<String> compareNames = new ArrayList<>();
-                    ArrayList<String> compareNames2 = new ArrayList<>();
-                    for (Element el : names) {
-                        compareNames.add(el.text());
-                    }
-                    for (Element el : names2) {
-                        compareNames2.add(el.text());
-                    }
+                    ArrayList<String> compareNames = nav.getYourPlayers(i);
+                    ArrayList<String> compareNames2 = nav.getOpponentPlayers(i);
 
                     //execute the update
                     Timer t = new Timer(delay, new LastPlayListener(gamePanels.get(i).getLastPlayPane(), parts, compareNames, compareNames2));
-                    //System.out.println("Making a change 1");
                     t.setRepeats(false);
                     t.start();
                 }
@@ -460,21 +369,13 @@ public class Manager implements Runnable {
             }
         }
 
-        //select the time/down information
-        selected = doc.getElementsByClass("situation");
-
         for (int i = 0; i < gamePanels.size(); i++) {
             try {
                 //select the game start time
-                String compare = selected.get(i).getElementsByClass("period").get(0).text();
-                String time = selected.get(i).getElementsByClass("time").get(0).text();
+                String compare = nav.getSituation(i);
+                String time = nav.getTime(i);
 
-                //see if it's empty, if it is, get the time remaining instead
-                if (compare.equals("")) {
-                    compare = selected.get(i).getElementsByClass("time").get(0).text();
-                } else {
-                    compare = time + " " + compare;
-                }
+                compare = time + " " + compare;
 
                 //check if it's different than on screen, start time for change if it is different
                 if (!gamePanels.get(i).getGameTimeLabel().getText().equals(compare)) {
@@ -490,7 +391,7 @@ public class Manager implements Runnable {
             try {
                 String compare;
                 try {
-                    compare = selected.get(i).getElementsByClass("down-distance").get(0).text();
+                    compare = nav.getDownDistance(i);
                 } catch (Exception e) {
                     compare = "Game Not Started";
                 }
@@ -502,16 +403,12 @@ public class Manager implements Runnable {
             }
         }
 
-        //select all team names
-        Elements awayTeamNames = doc.getElementsByClass("away-abbrev");
-        Elements homeTeamNames = doc.getElementsByClass("home-abbrev");
-
         //check if any of them have changed, and execute a timer to change if they are
         int j = 0;
         for (int i = 0; i < gamePanels.size(); i++) {
             try {
-                String compare1 = awayTeamNames.get(j).text();
-                String compare2 = homeTeamNames.get(j).text();
+                String compare1 = nav.getAwayTeamName(j);
+                String compare2 = nav.getHomeTeamName(j);
 
                 if (!gamePanels.get(i).getAwayTeamLabel().getText().equals(compare1)) {
                     startLabelChange(gamePanels.get(i).getAwayTeamLabel(), compare1);
@@ -526,18 +423,15 @@ public class Manager implements Runnable {
             }
         }
 
-        //select all team scores
-        Elements awayScores = doc.getElementsByClass("away-score");
-        Elements homeScores = doc.getElementsByClass("home-score");
-
         //check if any are different and execute timer if they are
-        j = 0;
+        j = 1;
         for (int i = 0; i < gamePanels.size(); i++) {
             try {
-                String compare1 = awayScores.get(i).text();
-                String compare2 = homeScores.get(i).text();
+                String compare1 = nav.getAwayScore(j);
+                String compare2 = nav.getHomeScore(j);
 
                 if (!gamePanels.get(i).getAwayScoreLabel().getText().equals(compare1)) {
+                    System.out.println("Making a change i="+i);
                     startLabelChange(gamePanels.get(i).getAwayScoreLabel(), compare1);
                 }
 
@@ -545,7 +439,7 @@ public class Manager implements Runnable {
                     startLabelChange(gamePanels.get(i).getHomeScoreLabel(), compare2);
                 }
 
-                j++;
+                j+=2;
             } catch (IndexOutOfBoundsException e) {
                 continue;
             }
@@ -553,49 +447,36 @@ public class Manager implements Runnable {
 
     }
 
-    public void checkForPlayerUpdates(ArrayList<PlayerPanel> playerPanels, ArrayList<TeamInfoPanel> infoPanels, Document doc) {
-
-        //select left to play 
-        Elements info;
-        Elements points = doc.getElementsByClass("points");
+    public void checkForPlayerUpdates(ArrayList<PlayerPanel> playerPanels, ArrayList<TeamInfoPanel> infoPanels) {
 
         //check if it's different and change if needed
         for (int i = 0; i < infoPanels.size(); i++) {
-            info = doc.select("span[id^=team_ytp]");
-
-            String compare = "To Play: " + info.get(i).text();
+            String compare = nav.getToPlay(i);
             if (!infoPanels.get(i).getToPlay().getText().equals(compare)) {
                 startLabelChange(infoPanels.get(i).getToPlay(), compare);
             }
 
-            info = doc.select("span[id^=team_ip]");
-            compare = "In Play: " + info.get(i).text();
+            compare = nav.getInPlay(i);
             if (!infoPanels.get(i).getInPlay().getText().equals(compare)) {
                 startLabelChange(infoPanels.get(i).getInPlay(), compare);
             }
 
-            info = doc.select("span[id^=team_liveproj]");
-            compare = "Proj: " + info.get(i).text();
+            compare = nav.getProjection(i);
             if (!infoPanels.get(i).getProjection().equals(compare)) {
                 startLabelChange(infoPanels.get(i).getProjection(), compare);
-                //System.out.println("Making a change 10");
             }
 
-            compare = points.get(i).getElementsByTag("span").get(0).text();
+            compare = nav.getTotalScore(i);
             if (!infoPanels.get(i).getTotalScore().getText().equals(compare)) {
                 startLabelChange(infoPanels.get(i).getTotalScore(), compare);
-                //System.out.println("Making a change 33");
             }
         }
-
-        //select player slots
-        Elements slots = doc.getElementsByClass("slot");
 
         int j = 0;
         for (int i = 0; i < 33; i += 2) {
             //check player names for changes
-            String nameCompare1 = slots.get(j).getElementsByClass("playerName").get(0).text();
-            String nameCompare2 = slots.get(j).getElementsByClass("playerName").get(1).text();
+            String nameCompare1 = nav.getPlayerName(j, 0);
+            String nameCompare2 = nav.getPlayerName(j, 1);
 
             if (!playerPanels.get(i).getName().getText().equals(nameCompare1)) {
                 startLabelChange(playerPanels.get(i).getName(), nameCompare1);
@@ -608,13 +489,13 @@ public class Manager implements Runnable {
             }
 
             //get scores, and also player statuses
-            String scoreCompare1 = slots.get(j).getElementsByTag("td").get(1).text();
-            String className1 = slots.get(j).getElementsByTag("td").get(0).className();
-            String scoreCompare2 = slots.get(j).getElementsByTag("td").get(6).text();
-            String className2 = slots.get(j).getElementsByTag("td").get(5).className();
+            String scoreCompare1 = nav.getPlayerScore(j, 1);
+            String className1 = nav.getPlayerState(j, 0);
+            String scoreCompare2 = nav.getPlayerScore(j, 6);
+            String className2 = nav.getPlayerState(j, 5);
 
-            String playerGameState1 = slots.get(j).select("td[class^=player proteam]").get(0).className();
-            String playerGameState2 = slots.get(j).select("td[class^=player proteam]").get(1).className();
+            String playerGameState1 = nav.getPlayerGameState(j, 0);
+            String playerGameState2 = nav.getPlayerGameState(j, 1);
 
             //if a player is on offense, defense, or in redzone, set color
             updatePlayerState(className1, playerPanels.get(i).getPanel());
@@ -639,13 +520,13 @@ public class Manager implements Runnable {
             String statCompare2;
 
             //set the comparisons and check if they are different and change if needed
-            if (!slots.get(j).getElementsByClass("status").get(0).text().contains("ET")) {
-                statCompare1 = slots.get(j).getElementsByClass("playerstatsummary").get(0).text();
+            if (!nav.containsET(j, 0)) {
+                statCompare1 = nav.getPlayerStats(j, 0);
             } else {
                 statCompare1 = " ";
             }
-            if (!slots.get(j).getElementsByClass("status").get(1).text().contains("ET")) {
-                statCompare2 = slots.get(j).getElementsByClass("playerstatsummary").get(1).text();
+            if (!nav.containsET(j, 1)) {
+                statCompare2 = nav.getPlayerStats(j, 1);
             } else {
                 statCompare2 = " ";
             }
@@ -665,13 +546,13 @@ public class Manager implements Runnable {
             String gameCompare2;
 
             try {
-                gameCompare1 = slots.get(j).getElementsByClass("status").get(0).getElementsByClass("gamestatus").get(0).text();
+                gameCompare1 = nav.getGameStatus(j, 0);
             } catch (Exception e1) {
                 gameCompare1 = " ";
             }
 
             try {
-                gameCompare2 = slots.get(j).getElementsByClass("status").get(1).getElementsByClass("gamestatus").get(0).text();
+                gameCompare2 = nav.getGameStatus(j, 1);
             } catch (Exception e2) {
                 gameCompare2 = " ";
             }
@@ -804,17 +685,15 @@ public class Manager implements Runnable {
 
     }
 
-    public void setPlayerImages(ArrayList<PlayerPanel> playerPanels, Document doc) {
-        Elements imageSelector = doc.getElementsByClass("playerPhotoWrapper");
-
+    public void setPlayerImages(ArrayList<PlayerPanel> playerPanels) {
         int j = 0;
         for (int i = 0; i < playerPanels.size(); i += 2) {
             try {
                 try {
-                    URL imageURL1 = new URL(imageSelector.get(i).getElementsByTag("img").get(0).absUrl("src"));
+                    URL imageURL1 = nav.getPlayerImage(i);
                     playerPanels.get(i).getImage().setIcon(new ImageIcon(imageURL1, ""));
                 } catch (IndexOutOfBoundsException ex) {
-                    String url1 = imageSelector.get(i).getElementsByClass("fantasy-team-logo").get(0).attr("style");
+                    String url1 = nav.getDefenseLogo(i);
                     url1 = url1.substring(url1.indexOf("(") + 1);
                     url1 = url1.substring(0, url1.indexOf(")"));
                     URL imageURL1 = new URL(url1);
@@ -822,10 +701,10 @@ public class Manager implements Runnable {
                 }
 
                 try {
-                    URL imageURL2 = new URL(imageSelector.get(i + 1).getElementsByTag("img").get(0).absUrl("src"));
+                    URL imageURL2 = nav.getPlayerImage(i + 1);
                     playerPanels.get(i + 1).getImage().setIcon(new ImageIcon(imageURL2, ""));
                 } catch (IndexOutOfBoundsException ex) {
-                    String url2 = imageSelector.get(i + 1).getElementsByClass("fantasy-team-logo").get(0).attr("style");
+                    String url2 = nav.getDefenseLogo(i + 1);
                     url2 = url2.substring(url2.indexOf("(") + 1);
                     url2 = url2.substring(0, url2.indexOf(")"));
                     URL imageURL2 = new URL(url2);
@@ -837,10 +716,10 @@ public class Manager implements Runnable {
         }
     }
 
-    public void setPossesionIcons(ArrayList<GamePanel> gamePanels, Document doc) throws IOException {
+    public void setPossesionIcons(ArrayList<GamePanel> gamePanels) throws IOException {
         for (int i = 0; i < gamePanels.size(); i++) {
             try {
-                String baseString = doc.getElementsByClass("logo").get(i).attr("style").toString();
+                String baseString = nav.getPossessionIcon(i);
                 int x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
                 int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
@@ -861,10 +740,10 @@ public class Manager implements Runnable {
 
     }
 
-    public void checkForPossessionUpdate(ArrayList<GamePanel> gamePanels, Document doc) throws IOException {
+    public void checkForPossessionUpdate(ArrayList<GamePanel> gamePanels) throws IOException {
         for (int i = 0; i < gamePanels.size(); i++) {
             try {
-                String baseString = doc.getElementsByClass("logo").get(i).attr("style").toString();
+                String baseString = nav.getPossessionIcon(i);
                 int x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
                 int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
@@ -901,11 +780,11 @@ public class Manager implements Runnable {
 
     }
 
-    public void setTeamLogos(ArrayList<GamePanel> gamePanels, Document doc) throws IOException {
+    public void setTeamLogos(ArrayList<GamePanel> gamePanels) throws IOException {
         int j = 0;
         for (int i = 0; i < 32; i += 2) {
             try {
-                String baseString = doc.getElementsByClass("team-logo").get(i).attr("Style").toString();
+                String baseString = nav.getTeamLogo(i);
                 int x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
                 int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
@@ -916,7 +795,7 @@ public class Manager implements Runnable {
                 gamePanels.get(j).setAwayIconY(y);
                 gamePanels.get(j).getAwayLogo().setIcon(new ImageIcon(crop));
 
-                baseString = doc.getElementsByClass("team-logo").get(i + 1).attr("Style").toString();
+                baseString = nav.getTeamLogo(i + 1);
                 x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
                 y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
@@ -933,11 +812,11 @@ public class Manager implements Runnable {
         }
     }
 
-    public void checkForTeamLogoUpdate(ArrayList<GamePanel> gamePanels, Document doc) throws IOException {
+    public void checkForTeamLogoUpdate(ArrayList<GamePanel> gamePanels) throws IOException {
         int j = 0;
         for (int i = 0; i < 32; i += 2) {
             try {
-                String baseString = doc.getElementsByClass("team-logo").get(i).attr("Style").toString();
+                String baseString = nav.getTeamLogo(i);
                 int x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
                 int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
@@ -953,7 +832,7 @@ public class Manager implements Runnable {
                     gamePanels.get(j).setAwayIconY(y);
                 }
 
-                baseString = doc.getElementsByClass("team-logo").get(i + 1).attr("Style").toString();
+                baseString = nav.getTeamLogo(i + 1);
                 x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
                 y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
@@ -1045,11 +924,9 @@ public class Manager implements Runnable {
         t1.start();
     }
 
-    public void checkForScoringNotification(WebDriver d2) {
-
-        Document doc1 = Jsoup.parse(d2.getPageSource());
+    public void checkForScoringNotification() {
         try {
-            Elements selected = doc1.select("div#toastDiv");
+            Elements selected = nav.getNotificationInfo();
 
             String notificationText = "";
             String team1 = "";

@@ -5,6 +5,7 @@
  */
 package DelayedFootball.ActionListeners;
 
+import DelayedFootball.WebNavigator;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import org.jsoup.nodes.Document;
@@ -16,12 +17,10 @@ import org.openqa.selenium.WebDriver;
  */
 public class WindowClosingListener implements WindowListener {
 
-    private WebDriver d;
-    private WebDriver d2;
+    private WebNavigator nav;
 
-    public WindowClosingListener(WebDriver d, WebDriver d2) {
-        this.d = d;
-        this.d2 = d2;
+    public WindowClosingListener(WebNavigator nav) {
+        this.nav = nav;
     }
 
     @Override
@@ -30,14 +29,12 @@ public class WindowClosingListener implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        d.quit();
-        d2.quit();
+        nav.closeDrivers();
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
-        d.quit();
-        d2.quit();
+        nav.closeDrivers();
     }
 
     @Override
