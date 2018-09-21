@@ -135,6 +135,7 @@ public class Manager implements Runnable {
                 checkForPossessionUpdate(gamePanels);
                 Thread.sleep(50);
             } catch (Exception e) {
+                e.printStackTrace();
                 break;
             }
         }

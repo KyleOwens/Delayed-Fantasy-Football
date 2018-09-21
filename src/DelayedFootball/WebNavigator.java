@@ -191,7 +191,14 @@ public class WebNavigator {
     }
 
     public String getPlayerName(int i, int slotPos) {
-        return doc.getElementsByClass("slot").get(i).getElementsByClass("playerName").get(slotPos).text();
+        String result;
+        try {
+            result = doc.getElementsByClass("slot").get(i).getElementsByClass("playerName").get(slotPos).text();
+        } catch (IndexOutOfBoundsException e) {
+            result = "Empty";
+        }
+        
+        return result;
     }
 
     public String getPlayerScore(int i, int slotPos) {
@@ -203,15 +210,33 @@ public class WebNavigator {
     }
 
     public String getPlayerGameState(int i, int slotPos) {
-        return doc.getElementsByClass("slot").get(i).select("td[class^=player proteam]").get(slotPos).className();
+        String result;
+        try {
+            result = doc.getElementsByClass("slot").get(i).select("td[class^=player proteam]").get(slotPos).className();
+        } catch (IndexOutOfBoundsException e) {
+            result = "";
+        }
+        return result;
     }
 
     public boolean containsET(int i, int slotPos) {
-        return doc.getElementsByClass("slot").get(i).getElementsByClass("status").get(slotPos).text().contains("ET");
+        Boolean result;
+        try {
+            result = doc.getElementsByClass("slot").get(i).getElementsByClass("status").get(slotPos).text().contains("ET");
+        } catch (IndexOutOfBoundsException e) {
+            result = false;
+        }
+        return result;
     }
 
     public String getPlayerStats(int i, int slotPos) {
-        return doc.getElementsByClass("slot").get(i).getElementsByClass("playerstatsummary").get(slotPos).text();
+        String result;
+        try{
+            result = doc.getElementsByClass("slot").get(i).getElementsByClass("playerstatsummary").get(slotPos).text();
+        } catch(IndexOutOfBoundsException e){
+            result = "";
+        }
+        return result;
     }
 
     public String getGameStatus(int i, int slotPos) {
