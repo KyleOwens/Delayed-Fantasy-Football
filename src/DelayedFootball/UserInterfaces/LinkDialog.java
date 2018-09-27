@@ -35,7 +35,7 @@ public class LinkDialog extends javax.swing.JDialog {
     private DefaultListModel lm1;
     private HashMap<String, String> nameLinks;
     private static Connection con;
-    private Manager manager;
+    private static Manager manager;
 
     public LinkDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -279,6 +279,7 @@ public class LinkDialog extends javax.swing.JDialog {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         try {
                             con.close();
+                            manager.close();
                         } catch (SQLException ex) {
                         }
                         System.exit(0);

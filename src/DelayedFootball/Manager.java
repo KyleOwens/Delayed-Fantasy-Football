@@ -14,7 +14,6 @@ import DelayedFootball.ActionListeners.LabelColorChanger;
 import DelayedFootball.ActionListeners.LabelVisibility;
 import DelayedFootball.ActionListeners.LastPlayListener;
 import DelayedFootball.ActionListeners.WindowClosingListener;
-import DelayedFootball.UserInterfaces.ErrorDialog;
 import DelayedFootball.UserInterfaces.Fantasycast;
 import DelayedFootball.UserInterfaces.LinkDialog;
 import DelayedFootball.UserInterfaces.NotificationDialog;
@@ -43,13 +42,9 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+
 import org.jsoup.select.Elements;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+
 
 /**
  *
@@ -58,7 +53,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class Manager implements Runnable {
 
     private LinkDialog links;
-    private WebNavigator nav;
+    private static WebNavigator nav;
 
     private ArrayList<PlayerPanel> playerPanels = new ArrayList<>();
     private ArrayList<GamePanel> gamePanels = new ArrayList<>();
@@ -133,9 +128,8 @@ public class Manager implements Runnable {
                 checkForScoringNotification();
                 checkForTeamLogoUpdate(gamePanels);
                 checkForPossessionUpdate(gamePanels);
-                Thread.sleep(50);
+                Thread.sleep(100);
             } catch (Exception e) {
-                e.printStackTrace();
                 break;
             }
         }
@@ -973,6 +967,10 @@ public class Manager implements Runnable {
         Timer t = new Timer(delay, new LabelColorChanger(label, color));
         t.setRepeats(false);
         t.start();
+    }
+    
+    public static void close(){
+        nav.closeDrivers();
     }
 
 }
