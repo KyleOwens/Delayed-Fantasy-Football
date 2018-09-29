@@ -45,7 +45,6 @@ import javax.swing.text.StyledDocument;
 
 import org.jsoup.select.Elements;
 
-
 /**
  *
  * @author Kyle
@@ -86,7 +85,6 @@ public class Manager implements Runnable {
 
         ProgressBar progress = new ProgressBar(null, false);
         progress.setVisible(true);
-
 
         while (true) {
             try {
@@ -312,18 +310,10 @@ public class Manager implements Runnable {
             setupGameState(playerGameState2, playerPanels.get(i + 1).getName(), playerPanels.get(i + 1).getGame(), playerPanels.get(i + 1).getScore(), playerPanels.get(i + 1).getStats(), i);
 
             //check if the player1 game status has an eastern time in it and set it, if not, set it to blank
-            if (!nav.containsET(j, 0)) {
-                playerPanels.get(i).getStats().setText(nav.getPlayerStats(j, 0));
-            } else {
-                playerPanels.get(i).getStats().setText(" ");
-            }
+            playerPanels.get(i).getStats().setText(nav.getPlayerStats(j, 0));
 
             //check if the player2 game status has an eastern time in it and set it, if not, set it to blank
-            if (!nav.containsET(j, 1)) {
-                playerPanels.get(i + 1).getStats().setText(nav.getPlayerStats(j, 0));
-            } else {
-                playerPanels.get(i + 1).getStats().setText(" ");
-            }
+            playerPanels.get(i + 1).getStats().setText(nav.getPlayerStats(j, 1));
 
             try {
                 playerPanels.get(i).getGame().setText(nav.getGameStatus(j, 0));
@@ -426,7 +416,7 @@ public class Manager implements Runnable {
                 String compare2 = nav.getHomeScore(j);
 
                 if (!gamePanels.get(i).getAwayScoreLabel().getText().equals(compare1)) {
-                    System.out.println("Making a change i="+i);
+                    System.out.println("Making a change i=" + i);
                     startLabelChange(gamePanels.get(i).getAwayScoreLabel(), compare1);
                 }
 
@@ -434,7 +424,7 @@ public class Manager implements Runnable {
                     startLabelChange(gamePanels.get(i).getHomeScoreLabel(), compare2);
                 }
 
-                j+=2;
+                j += 2;
             } catch (IndexOutOfBoundsException e) {
                 continue;
             }
@@ -968,8 +958,8 @@ public class Manager implements Runnable {
         t.setRepeats(false);
         t.start();
     }
-    
-    public static void close(){
+
+    public static void close() {
         nav.closeDrivers();
     }
 
