@@ -36,7 +36,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="scrollPane" pref="0" max="32767" attributes="0"/>
-                  <Component id="jScrollPane3" pref="823" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" pref="821" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -3469,9 +3469,9 @@
                           <Component id="image1" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats1" max="32767" attributes="0"/>
+                              <Component id="playerStats1" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName1" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName1" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore1" min="-2" pref="52" max="-2" attributes="0"/>
@@ -3622,9 +3622,9 @@
                           <Component id="image2" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats2" alignment="0" max="32767" attributes="0"/>
                               <Component id="playerGame2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName2" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats2" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore2" min="-2" pref="52" max="-2" attributes="0"/>
@@ -3710,9 +3710,9 @@
                           <Component id="image3" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats3" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats3" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame3" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName3" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName3" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore3" min="-2" pref="52" max="-2" attributes="0"/>
@@ -3803,9 +3803,9 @@
                           <Component id="image4" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats4" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats4" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame4" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName4" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName4" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore4" min="-2" pref="52" max="-2" attributes="0"/>
@@ -3896,9 +3896,9 @@
                           <Component id="image5" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats5" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame5" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName5" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName5" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore5" min="-2" pref="52" max="-2" attributes="0"/>
@@ -3989,9 +3989,9 @@
                           <Component id="image6" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats6" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats6" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame6" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName6" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName6" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore6" min="-2" pref="52" max="-2" attributes="0"/>
@@ -4082,9 +4082,9 @@
                           <Component id="image7" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats7" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats7" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame7" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName7" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName7" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore7" min="-2" pref="52" max="-2" attributes="0"/>
@@ -4175,9 +4175,9 @@
                           <Component id="image8" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats8" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats8" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame8" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName8" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName8" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore8" min="-2" pref="52" max="-2" attributes="0"/>
@@ -4268,9 +4268,9 @@
                           <Component id="image9" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats9" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats9" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame9" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName9" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName9" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore9" min="-2" pref="52" max="-2" attributes="0"/>
@@ -4361,9 +4361,9 @@
                           <Component id="image10" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats10" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats10" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame10" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName10" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName10" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore10" min="-2" pref="52" max="-2" attributes="0"/>
@@ -4454,9 +4454,9 @@
                           <Component id="image11" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats11" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats11" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame11" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName11" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName11" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore11" min="-2" pref="52" max="-2" attributes="0"/>
@@ -4547,9 +4547,9 @@
                           <Component id="image12" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats12" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats12" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame12" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName12" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName12" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore12" min="-2" pref="52" max="-2" attributes="0"/>
@@ -4640,9 +4640,9 @@
                           <Component id="image13" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats13" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats13" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame13" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName13" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName13" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore13" min="-2" pref="52" max="-2" attributes="0"/>
@@ -4733,9 +4733,9 @@
                           <Component id="image14" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats14" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats14" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame14" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName14" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName14" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore14" min="-2" pref="52" max="-2" attributes="0"/>
@@ -4826,9 +4826,9 @@
                           <Component id="image15" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats15" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats15" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame15" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName15" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName15" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore15" min="-2" pref="52" max="-2" attributes="0"/>
@@ -4919,9 +4919,9 @@
                           <Component id="image16" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats16" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats16" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame16" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName16" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName16" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore16" min="-2" pref="52" max="-2" attributes="0"/>
@@ -5012,9 +5012,9 @@
                           <Component id="image17" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats17" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats17" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame17" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName17" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName17" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore17" min="-2" pref="52" max="-2" attributes="0"/>
@@ -5105,9 +5105,9 @@
                           <Component id="image18" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats18" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats18" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame18" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName18" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName18" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore18" min="-2" pref="52" max="-2" attributes="0"/>
@@ -5198,9 +5198,9 @@
                           <Component id="image19" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats19" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats19" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame19" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName19" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName19" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore19" min="-2" pref="52" max="-2" attributes="0"/>
@@ -5291,9 +5291,9 @@
                           <Component id="image20" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats20" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats20" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame20" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName20" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName20" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore20" min="-2" pref="52" max="-2" attributes="0"/>
@@ -5384,9 +5384,9 @@
                           <Component id="image21" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats21" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats21" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame21" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName21" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName21" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore21" min="-2" pref="52" max="-2" attributes="0"/>
@@ -5477,9 +5477,9 @@
                           <Component id="image22" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats22" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats22" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame22" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName22" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName22" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore22" min="-2" pref="52" max="-2" attributes="0"/>
@@ -5570,9 +5570,9 @@
                           <Component id="image23" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats23" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats23" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame23" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName23" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName23" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore23" min="-2" pref="52" max="-2" attributes="0"/>
@@ -5663,9 +5663,9 @@
                           <Component id="image24" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats24" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats24" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame24" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName24" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName24" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore24" min="-2" pref="52" max="-2" attributes="0"/>
@@ -5756,9 +5756,9 @@
                           <Component id="image25" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats25" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats25" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame25" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName25" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName25" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore25" min="-2" pref="52" max="-2" attributes="0"/>
@@ -5849,9 +5849,9 @@
                           <Component id="image26" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats26" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats26" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame26" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName26" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName26" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore26" min="-2" pref="52" max="-2" attributes="0"/>
@@ -5942,9 +5942,9 @@
                           <Component id="image27" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats27" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats27" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame27" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName27" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName27" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore27" min="-2" pref="52" max="-2" attributes="0"/>
@@ -6035,9 +6035,9 @@
                           <Component id="image28" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats28" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats28" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame28" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName28" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName28" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore28" min="-2" pref="52" max="-2" attributes="0"/>
@@ -6128,9 +6128,9 @@
                           <Component id="image29" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats29" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats29" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame29" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName29" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName29" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore29" min="-2" pref="52" max="-2" attributes="0"/>
@@ -6221,9 +6221,9 @@
                           <Component id="image30" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats30" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats30" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame30" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName30" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName30" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore30" min="-2" pref="52" max="-2" attributes="0"/>
@@ -6314,9 +6314,9 @@
                           <Component id="image31" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats31" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats31" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame31" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName31" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName31" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore31" min="-2" pref="52" max="-2" attributes="0"/>
@@ -6407,9 +6407,9 @@
                           <Component id="image32" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats32" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats32" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame32" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName32" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName32" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore32" min="-2" pref="52" max="-2" attributes="0"/>
@@ -6500,9 +6500,9 @@
                           <Component id="image33" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats33" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats33" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame33" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName33" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName33" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore33" min="-2" pref="52" max="-2" attributes="0"/>
@@ -6593,9 +6593,9 @@
                           <Component id="image34" min="-2" pref="41" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="playerStats34" alignment="0" max="32767" attributes="0"/>
+                              <Component id="playerStats34" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="playerGame34" alignment="0" max="32767" attributes="0"/>
-                              <Component id="playerName34" alignment="0" pref="117" max="32767" attributes="0"/>
+                              <Component id="playerName34" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="playerScore34" min="-2" pref="52" max="-2" attributes="0"/>

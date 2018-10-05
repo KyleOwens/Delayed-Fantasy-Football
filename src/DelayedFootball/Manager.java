@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -84,6 +86,7 @@ public class Manager implements Runnable {
         lastNotification = "";
 
         ProgressBar progress = new ProgressBar(null, false);
+        progress.addWindowListener(new DialogCloser());
         progress.setVisible(true);
 
         while (true) {

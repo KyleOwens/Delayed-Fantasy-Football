@@ -30,13 +30,15 @@ public class WebNavigator {
     public WebNavigator() {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 
-        chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
-        chromeOptions.addArguments("--mute-audio");
+        new Thread(() -> {
+            chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("--headless");
+            chromeOptions.addArguments("--mute-audio");
 
-        fantasycast = new ChromeDriver(chromeOptions);
-        scoreAlerts = new ChromeDriver(chromeOptions);
-        scoreAlerts.get("http://games.espn.com/ffl/scoreboard?leagueId=19116&seasonId=2018");
+            fantasycast = new ChromeDriver(chromeOptions);
+            scoreAlerts = new ChromeDriver(chromeOptions);
+            scoreAlerts.get("http://games.espn.com/ffl/scoreboard?leagueId=19116&seasonId=2018");
+        }).start();
     }
 
     public void closeDrivers() {
@@ -197,7 +199,7 @@ public class WebNavigator {
         } catch (IndexOutOfBoundsException e) {
             result = "Empty";
         }
-        
+
         return result;
     }
 
@@ -231,9 +233,9 @@ public class WebNavigator {
 
     public String getPlayerStats(int i, int slotPos) {
         String result;
-        try{
+        try {
             result = doc.getElementsByClass("slot").get(i).getElementsByClass("playerstatsummary").get(slotPos).text();
-        } catch(IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             result = "";
         }
         return result;

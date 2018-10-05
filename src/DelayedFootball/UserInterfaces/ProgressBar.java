@@ -8,20 +8,19 @@ package DelayedFootball.UserInterfaces;
 import DelayedFootball.ActionListeners.DialogCloser;
 import DelayedFootball.ActionListeners.WindowClosingListener;
 import DelayedFootball.DelayedFantasyFootball;
+import DelayedFootball.WebNavigator;
 
 /**
  *
  * @author Kyle
  */
 public class ProgressBar extends javax.swing.JDialog {
-
-    /**
-     * Creates new form ProgressBar
-     */
+    
     public ProgressBar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,7 +101,6 @@ public class ProgressBar extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ProgressBar dialog = new ProgressBar(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new DialogCloser()); 
                 dialog.setVisible(true);
             }
         }

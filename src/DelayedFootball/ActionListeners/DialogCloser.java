@@ -5,14 +5,17 @@
  */
 package DelayedFootball.ActionListeners;
 
+import DelayedFootball.WebNavigator;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Kyle
  */
-public class DialogCloser implements WindowListener{
+public class DialogCloser implements WindowListener {
 
     @Override
     public void windowOpened(WindowEvent e) {
@@ -42,5 +45,5 @@ public class DialogCloser implements WindowListener{
     @Override
     public void windowDeactivated(WindowEvent e) {
     }
-    
+
 }
