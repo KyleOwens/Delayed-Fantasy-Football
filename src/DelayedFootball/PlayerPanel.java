@@ -15,13 +15,14 @@ import javax.swing.JPanel;
  * @author Kyle
  */
 public class PlayerPanel {
+
     private String playerName;
     private String playerGame;
     private String playerStats;
     private Color playerStatus;
     private String playerScore;
     private String imageLink;
-    
+
     private JLabel name;
     private JLabel game;
     private JLabel stats;
@@ -38,14 +39,14 @@ public class PlayerPanel {
         this.panel = panel;
         init();
     }
-    
-    public void init(){
+
+    public void init() {
         name.setForeground(Color.white);
         game.setForeground(Color.white);
         stats.setForeground(Color.white);
         score.setForeground(Color.white);
         panel.setBackground(Colors.BACKGROUND);
-        
+
         playerName = name.getText();
         playerGame = game.getText();
         playerStats = stats.getText();
@@ -53,28 +54,36 @@ public class PlayerPanel {
         playerScore = score.getText();
     }
 
-    public String getPlayerName() {
-        return playerName;
+    public void setPlayerName(String playerName) {
+        this.name.setText(playerName);
+        this.playerName = playerName;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public void setPlayerScore(String playerScore) {
+        this.score.setText(playerScore);
+        this.playerScore = playerScore;
+    }
+
+    public void setPlayerStats(String playerStats) {
+        this.stats.setText(playerStats);
+        this.playerStats = playerStats;
+    }
+
+    public void setPlayerGame(String playerGame) {
+        this.game.setText(playerGame);
+        this.playerGame = playerGame;
+    }
+
+    public String getPlayerName() {
+        return playerName;
     }
 
     public String getPlayerGame() {
         return playerGame;
     }
 
-    public void setPlayerGame(String playerGame) {
-        this.playerGame = playerGame;
-    }
-
     public String getPlayerStats() {
         return playerStats;
-    }
-
-    public void setPlayerStats(String playerStats) {
-        this.playerStats = playerStats;
     }
 
     public Color getPlayerStatus() {
@@ -87,10 +96,6 @@ public class PlayerPanel {
 
     public String getPlayerScore() {
         return playerScore;
-    }
-
-    public void setPlayerScore(String playerScore) {
-        this.playerScore = playerScore;
     }
 
     public String getImageLink() {
@@ -124,6 +129,5 @@ public class PlayerPanel {
     public JPanel getPanel() {
         return panel;
     }
-    
-    
+
 }

@@ -16,6 +16,7 @@ import javax.swing.JTextPane;
  * @author Kyle
  */
 public class GamePanel {
+
     private String awayTeam;
     private String homeTeam;
     private String awayScore;
@@ -23,15 +24,14 @@ public class GamePanel {
     private String gameTime;
     private String gameStatus;
     private String lastPlay;
-    
+
     private int imgX;
     private int imgY;
     private int awayIconX;
     private int awayIconY;
     private int homeIconX;
     private int homeIconY;
-    
-    
+
     private JLabel awayTeamLabel;
     private JLabel homeTeamLabel;
     private JLabel awayScoreLabel;
@@ -45,7 +45,7 @@ public class GamePanel {
     private JTextPane lastPlayPane;
     private JPanel panel;
 
-    public GamePanel(JLabel awayTeamLabel, JLabel homeTeamLabel, JLabel awayScoreLabel, JLabel homeScoreLabel, 
+    public GamePanel(JLabel awayTeamLabel, JLabel homeTeamLabel, JLabel awayScoreLabel, JLabel homeScoreLabel,
             JLabel gameTimeLabel, JLabel gameStatusLabel, JTextPane lastPlayPane, JPanel panel,
             JLabel awayLogo, JLabel homeLogo, JLabel possession, JLabel possLabel) {
         this.awayTeamLabel = awayTeamLabel;
@@ -62,12 +62,12 @@ public class GamePanel {
         this.panel = panel;
         init();
     }
-    
-    private void init(){
+
+    private void init() {
         imgX = 0;
         imgY = 0;
         awayTeamLabel.setForeground(Color.white);
-        homeTeamLabel.setForeground(Color.white); 
+        homeTeamLabel.setForeground(Color.white);
         awayScoreLabel.setForeground(Color.white);
         homeScoreLabel.setForeground(Color.white);
         gameTimeLabel.setForeground(Color.white);
@@ -77,52 +77,58 @@ public class GamePanel {
         panel.setBackground(Colors.BACKGROUND);
     }
 
-    public String getAwayTeam() {
-        return awayTeam;
+    public void setAwayTeam(String awayTeam) {
+        this.awayTeamLabel.setText(awayTeam);
+        this.awayTeam = awayTeam;
     }
 
-    public void setAwayTeam(String awayTeam) {
-        this.awayTeam = awayTeam;
+    public void setHomeTeam(String homeTeam) {
+        this.homeTeamLabel.setText(homeTeam);
+        this.homeTeam = homeTeam;
+    }
+
+    public void setAwayScore(String awayScore) {
+        this.awayScoreLabel.setText(awayScore);
+        this.awayScore = awayScore;
+    }
+
+    public void setHomeScore(String homeScore) {
+        this.homeScoreLabel.setText(homeScore);
+        this.homeScore = homeScore;
+    }
+
+    public void setGameTime(String gameTime) {
+        this.gameTimeLabel.setText(gameTime);
+        this.gameTime = gameTime;
+    }
+
+    public void setGameStatus(String gameStatus) {
+        this.gameStatusLabel.setText(gameStatus);
+        this.gameStatus = gameStatus;
+    }
+
+    public String getAwayTeam() {
+        return awayTeam;
     }
 
     public String getHomeTeam() {
         return homeTeam;
     }
 
-    public void setHomeTeam(String homeTeam) {
-        this.homeTeam = homeTeam;
-    }
-
     public String getAwayScore() {
         return awayScore;
-    }
-
-    public void setAwayScore(String awayScore) {
-        this.awayScore = awayScore;
     }
 
     public String getHomeScore() {
         return homeScore;
     }
 
-    public void setHomeScore(String homeScore) {
-        this.homeScore = homeScore;
-    }
-
     public String getGameTime() {
         return gameTime;
     }
 
-    public void setGameTime(String gameTime) {
-        this.gameTime = gameTime;
-    }
-
     public String getGameStatus() {
         return gameStatus;
-    }
-
-    public void setGameStatus(String gameStatus) {
-        this.gameStatus = gameStatus;
     }
 
     public String getLastPlay() {
@@ -228,6 +234,5 @@ public class GamePanel {
     public void setHomeIconY(int homeIconY) {
         this.homeIconY = homeIconY;
     }
-    
-    
+
 }

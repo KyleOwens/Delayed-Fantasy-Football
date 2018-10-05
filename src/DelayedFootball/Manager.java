@@ -260,7 +260,6 @@ public class Manager implements Runnable {
         for (int i = 0; i < 33; i += 2) {
             //grab the two player names of the slot, and set them to each team
             playerPanels.get(i).getName().setText(nav.getPlayerName(j, 0));
-
             playerPanels.get(i + 1).getName().setText(nav.getPlayerName(j, 1));
 
             //grab the two player scores and set them
