@@ -24,11 +24,9 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -607,31 +605,12 @@ public class Manager implements Runnable {
     }
 
     public void setPlayerImages(ArrayList<PlayerPanel> playerPanels) {
-        int j = 0;
         for (int i = 0; i < playerPanels.size(); i += 2) {
             try {
-                try {
-                    URL imageURL1 = nav.getPlayerImage(i);
-                    playerPanels.get(i).getImage().setIcon(new ImageIcon(imageURL1, ""));
-                } catch (IndexOutOfBoundsException ex) {
-                    String url1 = nav.getDefenseLogo(i);
-                    url1 = url1.substring(url1.indexOf("(") + 1);
-                    url1 = url1.substring(0, url1.indexOf(")"));
-                    URL imageURL1 = new URL(url1);
-                    playerPanels.get(i).getImage().setIcon(new ImageIcon(imageURL1, ""));
-                }
-
-                try {
-                    URL imageURL2 = nav.getPlayerImage(i + 1);
-                    playerPanels.get(i + 1).getImage().setIcon(new ImageIcon(imageURL2, ""));
-                } catch (IndexOutOfBoundsException ex) {
-                    String url2 = nav.getDefenseLogo(i + 1);
-                    url2 = url2.substring(url2.indexOf("(") + 1);
-                    url2 = url2.substring(0, url2.indexOf(")"));
-                    URL imageURL2 = new URL(url2);
-                    playerPanels.get(i + 1).getImage().setIcon(new ImageIcon(imageURL2, ""));
-                }
-            } catch (Exception e) {
+                playerPanels.get(i).getImage().setIcon(nav.getPlayerImage(i));
+                playerPanels.get(i + 1).getImage().setIcon(nav.getPlayerImage(i + 1));
+            } catch (MalformedURLException e) {
+                System.out.println("image fail");
                 continue;
             }
         }
@@ -639,32 +618,14 @@ public class Manager implements Runnable {
 
     public void setPossesionIcons(ArrayList<GamePanel> gamePanels) throws IOException {
         for (int i = 0; i < gamePanels.size(); i++) {
-            try {
-                String baseString = nav.getPossessionIcon(i);
-                int x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
-                int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
-
-                BufferedImage source = ImageIO.read(new File("Logos.png"));
-                BufferedImage crop = source.getSubimage(x, y, 30, 25);
-
-                gamePanels.get(i).getPossession().setIcon(new ImageIcon(crop));
-                gamePanels.get(i).setImgX(x);
-                gamePanels.get(i).setImgY(y);
-            } catch (Exception e) {
-                gamePanels.get(i).getPossLabel().setVisible(false);
-                gamePanels.get(i).setImgX(-1);
-                gamePanels.get(i).setImgY(-1);
-                continue;
-            }
-
+            gamePanels.get(i).getPossession().setIcon(nav.getPossessionIcon(i, gamePanels.get(i)));
         }
-
     }
 
     public void checkForPossessionUpdate(ArrayList<GamePanel> gamePanels) throws IOException {
         for (int i = 0; i < gamePanels.size(); i++) {
             try {
-                String baseString = nav.getPossessionIcon(i);
+                String baseString = nav.getPossessionIconString(i);
                 int x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
                 int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
