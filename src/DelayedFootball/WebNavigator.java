@@ -88,67 +88,96 @@ public class WebNavigator {
     }
 
     public String getAwayTeamName(int i) {
-        Elements awayTeamNames = doc.getElementsByClass("away-abbrev");
-
-        return awayTeamNames.get(i).text();
+        try {
+            Elements awayTeamNames = doc.getElementsByClass("away-abbrev");
+            return awayTeamNames.get(i).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getHomeTeamName(int i) {
-        Elements homeTeamNames = doc.getElementsByClass("home-abbrev");
-
-        return homeTeamNames.get(i).text();
+        try {
+            Elements homeTeamNames = doc.getElementsByClass("home-abbrev");
+            return homeTeamNames.get(i).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getAwayScore(int i) {
-        Elements awayScores = doc.getElementsByClass("away-score");
-
-        return awayScores.get(i).text();
+        try {
+            Elements awayScores = doc.getElementsByClass("away-score");
+            return awayScores.get(i).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getHomeScore(int i) {
-        Elements homeScores = doc.getElementsByClass("home-score");
-
-        return homeScores.get(i).text();
+        try {
+            Elements homeScores = doc.getElementsByClass("home-score");
+            return homeScores.get(i).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getLastPlay(int i) {
-        Elements lastPlays = doc.getElementsByClass("ref-parent");
-
-        return lastPlays.get(i).text();
+        try {
+            Elements lastPlays = doc.getElementsByClass("ref-parent");
+            return lastPlays.get(i).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "Error Getting Last Play";
+        }
     }
 
     public ArrayList<String> getYourPlayers(int i) {
-        Elements names = doc.getElementsByClass("ref-parent").get(i).getElementsByClass("your-player");
-
         ArrayList<String> yourPlayers = new ArrayList<>();
-        for (Element el : names) {
-            yourPlayers.add(el.text());
-        }
+        try {
+            Elements names = doc.getElementsByClass("ref-parent").get(i).getElementsByClass("your-player");
 
-        return yourPlayers;
+            for (Element el : names) {
+                yourPlayers.add(el.text());
+            }
+            return yourPlayers;
+
+        } catch (IndexOutOfBoundsException e) {
+            return yourPlayers;
+        }
     }
 
     public ArrayList<String> getOpponentPlayers(int i) {
-        Elements names = doc.getElementsByClass("ref-parent").get(i).getElementsByClass("opp-player");
-
         ArrayList<String> oppPlayers = new ArrayList<>();
-        for (Element el : names) {
-            oppPlayers.add(el.text());
-        }
+        try {
+            Elements names = doc.getElementsByClass("ref-parent").get(i).getElementsByClass("opp-player");
 
-        return oppPlayers;
+            for (Element el : names) {
+                oppPlayers.add(el.text());
+            }
+            return oppPlayers;
+
+        } catch (IndexOutOfBoundsException e) {
+            return oppPlayers;
+        }
     }
 
     public String getSituation(int i) {
-        Elements status = doc.getElementsByClass("situation");
-
-        return status.get(i).getElementsByClass("period").get(0).text();
+        try {
+            Elements status = doc.getElementsByClass("situation");
+            return status.get(i).getElementsByClass("period").get(0).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getTime(int i) {
-        Elements status = doc.getElementsByClass("situation");
-
-        return status.get(i).getElementsByClass("time").get(0).text();
+        try {
+            Elements status = doc.getElementsByClass("situation");
+            return status.get(i).getElementsByClass("time").get(0).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getDownDistance(int i) {
@@ -156,40 +185,63 @@ public class WebNavigator {
         String downDist = "Game not active";
         try {
             downDist = status.get(i).getElementsByClass("down-distance").get(0).text();
-        } catch (Exception e) {
+        } catch (IndexOutOfBoundsException e) {
 
         }
-
         return downDist;
     }
 
     public String getFantasyTeamName(int i) {
-        Elements teamNames = doc.getElementsByClass("teamName");
-        return teamNames.get(i).text();
+        try {
+            Elements teamNames = doc.getElementsByClass("teamName");
+            return teamNames.get(i).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getFantasyOwner(int i) {
-        Elements owners = doc.getElementsByClass("owners");
-        return owners.get(i).text();
+        try {
+            Elements owners = doc.getElementsByClass("owners");
+            return owners.get(i).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getToPlay(int i) {
-        Elements ytp = doc.select("span[id^=team_ytp]");
-        return "To Play: " + ytp.get(i).text();
+        try {
+            Elements ytp = doc.select("span[id^=team_ytp]");
+            return "To Play: " + ytp.get(i).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getInPlay(int i) {
-        Elements ip = doc.select("span[id^=team_ip]");
-        return "In Play: " + ip.get(i).text();
+        try {
+            Elements ip = doc.select("span[id^=team_ip]");
+            return "In Play: " + ip.get(i).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getProjection(int i) {
-        Elements projs = doc.select("span[id^=team_liveproj]");
-        return "Proj: " + projs.get(i).text();
+        try {
+            Elements projs = doc.select("span[id^=team_liveproj]");
+            return "Proj: " + projs.get(i).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getTotalScore(int i) {
-        return doc.getElementsByClass("points").get(i).getElementsByTag("span").get(0).text();
+        try {
+            return doc.getElementsByClass("points").get(i).getElementsByTag("span").get(0).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getPlayerName(int i, int slotPos) {
@@ -204,11 +256,19 @@ public class WebNavigator {
     }
 
     public String getPlayerScore(int i, int slotPos) {
-        return doc.getElementsByClass("slot").get(i).getElementsByTag("td").get(slotPos).text();
+        try {
+            return doc.getElementsByClass("slot").get(i).getElementsByTag("td").get(slotPos).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getPlayerState(int i, int slotPos) {
-        return doc.getElementsByClass("slot").get(i).getElementsByTag("td").get(slotPos).className();
+        try {
+            return doc.getElementsByClass("slot").get(i).getElementsByTag("td").get(slotPos).className();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public String getPlayerGameState(int i, int slotPos) {
@@ -242,7 +302,11 @@ public class WebNavigator {
     }
 
     public String getGameStatus(int i, int slotPos) {
-        return doc.getElementsByClass("slot").get(i).getElementsByClass("status").get(slotPos).getElementsByClass("gamestatus").get(0).text();
+        try {
+            return doc.getElementsByClass("slot").get(i).getElementsByClass("status").get(slotPos).getElementsByClass("gamestatus").get(0).text();
+        } catch (IndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public URL getPlayerImage(int i) throws MalformedURLException {

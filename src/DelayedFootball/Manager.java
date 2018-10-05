@@ -75,9 +75,7 @@ public class Manager implements Runnable {
     @Override
     public void run() {
 
-        new Thread(() -> {
-            nav = new WebNavigator();
-        }).start();
+        nav = new WebNavigator();
 
         links = new LinkDialog(null, true, this);
         links.addWindowListener(new DialogCloser());
@@ -221,47 +219,29 @@ public class Manager implements Runnable {
 
     public void setUpGames(ArrayList<GamePanel> gamePanels) {
 
-        //set the team names up in the game scroll pane
         int j = 1;
         for (int i = 0; i < gamePanels.size(); i++) {
-            try {
-                gamePanels.get(i).getAwayTeamLabel().setText(nav.getAwayTeamName(i));
-                gamePanels.get(i).getHomeTeamLabel().setText(nav.getHomeTeamName(i));
-            } catch (IndexOutOfBoundsException e) {
-                continue;
-            }
+            gamePanels.get(i).getAwayTeamLabel().setText(nav.getAwayTeamName(i));
+            gamePanels.get(i).getHomeTeamLabel().setText(nav.getHomeTeamName(i));
 
-            try {
-                gamePanels.get(i).getAwayScoreLabel().setText(nav.getAwayScore(j));
-                gamePanels.get(i).getHomeScoreLabel().setText(nav.getHomeScore(j));
-                j += 2;
-            } catch (IndexOutOfBoundsException e) {
-                continue;
-            }
+            gamePanels.get(i).getAwayScoreLabel().setText(nav.getAwayScore(j));
+            gamePanels.get(i).getHomeScoreLabel().setText(nav.getHomeScore(j));
+            j += 2;
 
-            try {
+            //break down the last play into single words so that they can be comapred easily
+            ArrayList<String> parts = new ArrayList<>(Arrays.asList(nav.getLastPlay(i).split(" ")));
 
-                //break down the last play into single words so that they can be comapred
-                ArrayList<String> parts = new ArrayList<>(Arrays.asList(nav.getLastPlay(i).split(" ")));
+            //create and fill arraylists for your team and opponent team
+            ArrayList<String> compareNames = nav.getYourPlayers(i);
+            ArrayList<String> compareNames2 = nav.getOpponentPlayers(i);
 
-                //create and fill arraylists for your team and opponent team
-                ArrayList<String> compareNames = nav.getYourPlayers(i);
-                ArrayList<String> compareNames2 = nav.getOpponentPlayers(i);
+            //set up the last play text panes with the correct text, and correct highlighting
+            setJTextPane(gamePanels.get(i).getLastPlayPane(), parts, compareNames, compareNames2);
 
-                //set up the last play text panes with the correct text, and correct highlighting
-                setJTextPane(gamePanels.get(i).getLastPlayPane(), parts, compareNames, compareNames2);
-            } catch (IndexOutOfBoundsException e) {
-                continue;
-            }
+            String situation = nav.getSituation(i);
+            String time = nav.getTime(i);
 
-            try {
-                String situation = nav.getSituation(i);
-                String time = nav.getTime(i);
-
-                gamePanels.get(i).getGameTimeLabel().setText(time + " " + situation);
-            } catch (IndexOutOfBoundsException e) {
-                continue;
-            }
+            gamePanels.get(i).getGameTimeLabel().setText(time + " " + situation);
 
             gamePanels.get(i).getGameStatusLabel().setText(nav.getDownDistance(i));
 
@@ -281,17 +261,10 @@ public class Manager implements Runnable {
         int j = 0;
         for (int i = 0; i < 33; i += 2) {
             //grab the two player names of the slot, and set them to each team
-            try {
-                playerPanels.get(i).getName().setText(nav.getPlayerName(j, 0));
-            } catch (IndexOutOfBoundsException eio) {
-                playerPanels.get(i).getName().setText("empty");
-            }
+            playerPanels.get(i).getName().setText(nav.getPlayerName(j, 0));
 
-            try {
-                playerPanels.get(i + 1).getName().setText(nav.getPlayerName(j, 1));
-            } catch (IndexOutOfBoundsException eio2) {
-                playerPanels.get(i + 1).getName().setText("empty");
-            }
+            playerPanels.get(i + 1).getName().setText(nav.getPlayerName(j, 1));
+
             //grab the two player scores and set them
             playerPanels.get(i).getScore().setText(nav.getPlayerScore(j, 1));
             playerPanels.get(i + 1).getScore().setText(nav.getPlayerScore(j, 6));
@@ -318,17 +291,9 @@ public class Manager implements Runnable {
             //check if the player2 game status has an eastern time in it and set it, if not, set it to blank
             playerPanels.get(i + 1).getStats().setText(nav.getPlayerStats(j, 1));
 
-            try {
-                playerPanels.get(i).getGame().setText(nav.getGameStatus(j, 0));
-            } catch (Exception e1) {
-                playerPanels.get(i).getGame().setText(" ");
-            }
+            playerPanels.get(i).getGame().setText(nav.getGameStatus(j, 0));
 
-            try {
-                playerPanels.get(i + 1).getGame().setText(nav.getGameStatus(j, 1));
-            } catch (Exception e2) {
-                playerPanels.get(i + 1).getGame().setText(" ");
-            }
+            playerPanels.get(i + 1).getGame().setText(nav.getGameStatus(j, 1));
 
             j++;
         }
@@ -336,101 +301,78 @@ public class Manager implements Runnable {
 
     public void checkForGameUpdates(ArrayList<GamePanel> gamePanels) {
         for (int i = 0; i < gamePanels.size(); i++) {
-            try {
-                String compare = gamePanels.get(i).getLastPlayPane().getText();
-                compare = compare.replace("\n", "").replace("\r", "");
+            String compare = gamePanels.get(i).getLastPlayPane().getText();
+            compare = compare.replace("\n", "").replace("\r", "");
 
-                if (!compare.equals(nav.getLastPlay(i))) {
-                    //break the last play down into single strings
-                    ArrayList<String> parts = new ArrayList<>(Arrays.asList(nav.getLastPlay(i).split(" ")));
-                    //create and fill arrays for player names on teams
-                    ArrayList<String> compareNames = nav.getYourPlayers(i);
-                    ArrayList<String> compareNames2 = nav.getOpponentPlayers(i);
+            if (!compare.equals(nav.getLastPlay(i))) {
+                //break the last play down into single strings
+                ArrayList<String> parts = new ArrayList<>(Arrays.asList(nav.getLastPlay(i).split(" ")));
+                //create and fill arrays for player names on teams
+                ArrayList<String> compareNames = nav.getYourPlayers(i);
+                ArrayList<String> compareNames2 = nav.getOpponentPlayers(i);
 
-                    //execute the update
-                    Timer t = new Timer(delay, new LastPlayListener(gamePanels.get(i).getLastPlayPane(), parts, compareNames, compareNames2));
-                    t.setRepeats(false);
-                    t.start();
-                }
-            } catch (IndexOutOfBoundsException | NullPointerException e) {
-                continue;
+                //execute the update
+                Timer t = new Timer(delay, new LastPlayListener(gamePanels.get(i).getLastPlayPane(), parts, compareNames, compareNames2));
+                t.setRepeats(false);
+                t.start();
             }
         }
 
         for (int i = 0; i < gamePanels.size(); i++) {
-            try {
-                //select the game start time
-                String compare = nav.getSituation(i);
-                String time = nav.getTime(i);
+            //select the game start time
+            String compare = nav.getSituation(i);
+            String time = nav.getTime(i);
 
-                compare = time + " " + compare;
+            compare = time + " " + compare;
 
-                //check if it's different than on screen, start time for change if it is different
-                if (!gamePanels.get(i).getGameTimeLabel().getText().equals(compare)) {
-                    startLabelChange(gamePanels.get(i).getGameTimeLabel(), compare);
-                }
-            } catch (IndexOutOfBoundsException e) {
-                continue;
+            //check if it's different than on screen, start time for change if it is different
+            if (!gamePanels.get(i).getGameTimeLabel().getText().equals(compare)) {
+                startLabelChange(gamePanels.get(i).getGameTimeLabel(), compare);
             }
         }
 
         //get the current down/yardage and compare to what's on screen
         for (int i = 0; i < gamePanels.size(); i++) {
-            try {
-                String compare;
-                try {
-                    compare = nav.getDownDistance(i);
-                } catch (Exception e) {
-                    compare = "Game Not Started";
-                }
-                if (!gamePanels.get(i).getGameStatusLabel().getText().equals(compare)) {
-                    startLabelChange(gamePanels.get(i).getGameStatusLabel(), compare);
-                }
-            } catch (IndexOutOfBoundsException e) {
-                continue;
+            String compare;
+            compare = nav.getDownDistance(i);
+
+            if (!gamePanels.get(i).getGameStatusLabel().getText().equals(compare)) {
+                startLabelChange(gamePanels.get(i).getGameStatusLabel(), compare);
             }
         }
 
         //check if any of them have changed, and execute a timer to change if they are
         int j = 0;
         for (int i = 0; i < gamePanels.size(); i++) {
-            try {
-                String compare1 = nav.getAwayTeamName(j);
-                String compare2 = nav.getHomeTeamName(j);
+            String compare1 = nav.getAwayTeamName(j);
+            String compare2 = nav.getHomeTeamName(j);
 
-                if (!gamePanels.get(i).getAwayTeamLabel().getText().equals(compare1)) {
-                    startLabelChange(gamePanels.get(i).getAwayTeamLabel(), compare1);
-                }
-
-                if (!gamePanels.get(i).getHomeTeamLabel().getText().equals(compare2)) {
-                    startLabelChange(gamePanels.get(i).getHomeTeamLabel(), compare2);
-                }
-                j++;
-            } catch (IndexOutOfBoundsException e) {
-                continue;
+            if (!gamePanels.get(i).getAwayTeamLabel().getText().equals(compare1)) {
+                startLabelChange(gamePanels.get(i).getAwayTeamLabel(), compare1);
             }
+
+            if (!gamePanels.get(i).getHomeTeamLabel().getText().equals(compare2)) {
+                startLabelChange(gamePanels.get(i).getHomeTeamLabel(), compare2);
+            }
+            j++;
         }
 
         //check if any are different and execute timer if they are
         j = 1;
         for (int i = 0; i < gamePanels.size(); i++) {
-            try {
-                String compare1 = nav.getAwayScore(j);
-                String compare2 = nav.getHomeScore(j);
+            String compare1 = nav.getAwayScore(j);
+            String compare2 = nav.getHomeScore(j);
 
-                if (!gamePanels.get(i).getAwayScoreLabel().getText().equals(compare1)) {
-                    System.out.println("Making a change i=" + i);
-                    startLabelChange(gamePanels.get(i).getAwayScoreLabel(), compare1);
-                }
-
-                if (!gamePanels.get(i).getHomeScoreLabel().getText().equals(compare2)) {
-                    startLabelChange(gamePanels.get(i).getHomeScoreLabel(), compare2);
-                }
-
-                j += 2;
-            } catch (IndexOutOfBoundsException e) {
-                continue;
+            if (!gamePanels.get(i).getAwayScoreLabel().getText().equals(compare1)) {
+                System.out.println("Making a change i=" + i);
+                startLabelChange(gamePanels.get(i).getAwayScoreLabel(), compare1);
             }
+
+            if (!gamePanels.get(i).getHomeScoreLabel().getText().equals(compare2)) {
+                startLabelChange(gamePanels.get(i).getHomeScoreLabel(), compare2);
+            }
+
+            j += 2;
         }
 
     }
@@ -533,17 +475,8 @@ public class Manager implements Runnable {
             String gameCompare1;
             String gameCompare2;
 
-            try {
-                gameCompare1 = nav.getGameStatus(j, 0);
-            } catch (Exception e1) {
-                gameCompare1 = " ";
-            }
-
-            try {
-                gameCompare2 = nav.getGameStatus(j, 1);
-            } catch (Exception e2) {
-                gameCompare2 = " ";
-            }
+            gameCompare1 = nav.getGameStatus(j, 0);
+            gameCompare2 = nav.getGameStatus(j, 1);
 
             if (!playerPanels.get(i).getGame().getText().equals(gameCompare1)) {
                 startLabelChange(playerPanels.get(i).getGame(), gameCompare1);
