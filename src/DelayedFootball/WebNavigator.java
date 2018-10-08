@@ -5,13 +5,9 @@
  */
 package DelayedFootball;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -313,60 +309,20 @@ public class WebNavigator {
         }
     }
 
-    public ImageIcon getPlayerImage(int i) throws MalformedURLException {
-        try {
-            URL imageURL1 = new URL(doc.getElementsByClass("playerPhotoWrapper").get(i)
-                    .getElementsByTag("img").get(0).absUrl("src"));
-            return new ImageIcon(imageURL1, "");
-        } catch (IndexOutOfBoundsException ex) {
-            try {
-                String url1 = doc.getElementsByClass("playerPhotoWrapper").get(i).getElementsByClass("fantasy-team-logo").get(0).attr("style");
-                url1 = url1.substring(url1.indexOf("(") + 1);
-                url1 = url1.substring(0, url1.indexOf(")"));
-                URL imageURL1 = new URL(url1);
-                return new ImageIcon(imageURL1, "");
-            } catch (IndexOutOfBoundsException e) {
-                return null;
-            }
-        }
+    public URL getPlayerImage(int i) throws MalformedURLException {
+        return new URL(doc.getElementsByClass("playerPhotoWrapper").get(i).getElementsByTag("img").get(0).absUrl("src"));
     }
 
-    public ImageIcon getPossessionIcon(int i, GamePanel gp) {
-        try {
-            String baseString = doc.getElementsByClass("logo").get(i).attr("style").toString();
-            int x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
-            int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
-
-            BufferedImage source = ImageIO.read(new File("Logos.png"));
-            BufferedImage crop = source.getSubimage(x, y, 30, 25);
-
-            gp.setImgX(x);
-            gp.setImgY(y);
-
-            return new ImageIcon(crop);
-        } catch (Exception e) {
-            gp.setImgX(-1);
-            gp.setImgY(-1);
-            gp.getPossLabel().setVisible(false);
-        }
-
-        return null;
+    public String getDefenseLogo(int i) {
+        return doc.getElementsByClass("playerPhotoWrapper").get(i).getElementsByClass("fantasy-team-logo").get(0).attr("style");
     }
 
-    public String getPossessionIconString(int i) {
-        try {
-            return doc.getElementsByClass("logo").get(i).attr("style").toString();
-        } catch (IndexOutOfBoundsException e) {
-            return "";
-        }
+    public String getPossessionIcon(int i) {
+        return doc.getElementsByClass("logo").get(i).attr("style").toString();
     }
 
     public String getTeamLogo(int i) {
-        try {
-            return doc.getElementsByClass("team-logo").get(i).attr("Style").toString();
-        } catch (IndexOutOfBoundsException e) {
-            return "";
-        }
+        return doc.getElementsByClass("team-logo").get(i).attr("Style").toString();
     }
 
 }
