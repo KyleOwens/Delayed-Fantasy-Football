@@ -27,6 +27,8 @@ public class TeamInfoPanel {
     private String playing;
     private String currentProjection;
     private String currentTotalScore;
+    private String name;
+    private String owner;
 
     public TeamInfoPanel(JLabel teamName, JLabel teamOwner, JLabel toPlay, JLabel inPlay, JLabel projection, JLabel totalScore) {
         this.teamName = teamName;
@@ -51,6 +53,23 @@ public class TeamInfoPanel {
         currentTotalScore = totalScore.getText();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    
     public String getYetToPlay() {
         return yetToPlay;
     }

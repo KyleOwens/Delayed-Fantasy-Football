@@ -78,32 +78,26 @@ public class GamePanel {
     }
 
     public void setAwayTeam(String awayTeam) {
-        this.awayTeamLabel.setText(awayTeam);
         this.awayTeam = awayTeam;
     }
 
     public void setHomeTeam(String homeTeam) {
-        this.homeTeamLabel.setText(homeTeam);
         this.homeTeam = homeTeam;
     }
 
     public void setAwayScore(String awayScore) {
-        this.awayScoreLabel.setText(awayScore);
         this.awayScore = awayScore;
     }
 
     public void setHomeScore(String homeScore) {
-        this.homeScoreLabel.setText(homeScore);
         this.homeScore = homeScore;
     }
 
     public void setGameTime(String gameTime) {
-        this.gameTimeLabel.setText(gameTime);
         this.gameTime = gameTime;
     }
 
     public void setGameStatus(String gameStatus) {
-        this.gameStatusLabel.setText(gameStatus);
         this.gameStatus = gameStatus;
     }
 

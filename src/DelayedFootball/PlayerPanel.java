@@ -55,29 +55,25 @@ public class PlayerPanel {
     }
 
     public void setPlayerName(String playerName) {
-        this.name.setText(playerName);
         this.playerName = playerName;
     }
 
     public void setPlayerScore(String playerScore) {
-        this.score.setText(playerScore);
         this.playerScore = playerScore;
     }
 
     public void setPlayerStats(String playerStats) {
-        this.stats.setText(playerStats);
         this.playerStats = playerStats;
     }
 
     public void setPlayerGame(String playerGame) {
-        this.game.setText(playerGame);
         this.playerGame = playerGame;
     }
 
     public String getPlayerName() {
         return playerName;
     }
-
+    
     public String getPlayerGame() {
         return playerGame;
     }
