@@ -6,6 +6,7 @@
 package DelayedFootball.UserInterfaces;
 
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -277,6 +278,8 @@ public class Fantasycast extends javax.swing.JFrame {
         fantasyTeamInfo1 = new javax.swing.JPanel();
         fantasyTeamName1 = new javax.swing.JLabel();
         owner1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        delayBox = new javax.swing.JComboBox<>();
         fantasyTeamInfo2 = new javax.swing.JPanel();
         fantasyTeamName2 = new javax.swing.JLabel();
         owner2 = new javax.swing.JLabel();
@@ -2160,6 +2163,11 @@ public class Fantasycast extends javax.swing.JFrame {
         owner1.setText("(0-0) Kyle Owens");
         owner1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
+        jLabel1.setText("Current Delay:");
+
+        delayBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90" }));
+        delayBox.setFocusable(false);
+
         javax.swing.GroupLayout fantasyTeamInfo1Layout = new javax.swing.GroupLayout(fantasyTeamInfo1);
         fantasyTeamInfo1.setLayout(fantasyTeamInfo1Layout);
         fantasyTeamInfo1Layout.setHorizontalGroup(
@@ -2167,13 +2175,20 @@ public class Fantasycast extends javax.swing.JFrame {
             .addGroup(fantasyTeamInfo1Layout.createSequentialGroup()
                 .addGroup(fantasyTeamInfo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fantasyTeamName1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(owner1))
+                    .addComponent(owner1)
+                    .addGroup(fantasyTeamInfo1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(delayBox, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         fantasyTeamInfo1Layout.setVerticalGroup(
             fantasyTeamInfo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fantasyTeamInfo1Layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addGroup(fantasyTeamInfo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(delayBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(fantasyTeamName1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(owner1)
@@ -4269,6 +4284,10 @@ public class Fantasycast extends javax.swing.JFrame {
         panels.add(mainGameScorePanel);
         return panels;
     }
+    
+    public JComboBox getDelayBox(){
+        return delayBox;
+    }
 
     public ArrayList<JLabel> getPossessionImages() {
         ArrayList<JLabel> labels = new ArrayList<JLabel>();
@@ -4800,6 +4819,7 @@ public class Fantasycast extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> delayBox;
     private javax.swing.JPanel fantasyTeamInfo1;
     private javax.swing.JPanel fantasyTeamInfo2;
     private javax.swing.JLabel fantasyTeamName1;
@@ -4888,6 +4908,7 @@ public class Fantasycast extends javax.swing.JFrame {
     private javax.swing.JLabel image9;
     private javax.swing.JLabel inPlay1;
     private javax.swing.JLabel inPlay2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
