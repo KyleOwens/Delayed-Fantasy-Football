@@ -127,6 +127,7 @@ public class Manager implements Runnable {
                 checkForScoringNotification();
                 checkForTeamLogoUpdate(gamePanels);
                 checkForPossessionUpdate(gamePanels);
+                checkForDelayChange();
                 Thread.sleep(100);
             } catch (Exception e) {
                 break;
@@ -198,6 +199,12 @@ public class Manager implements Runnable {
 
         prepareScrollPane(mainFrame.getScrollPane());
         prepareScrollPane(mainFrame.getScrollPane2());
+
+        for (int i = 0; i < mainFrame.getDelayBox().getItemCount(); i++) {
+            if (mainFrame.getDelayBox().getItemAt(i).equals(Integer.toString(delay / 1000))) {
+                mainFrame.getDelayBox().setSelectedIndex(i);
+            }
+        }
 
         ArrayList<JPanel> panels = mainFrame.getMainPanels();
 
@@ -335,7 +342,7 @@ public class Manager implements Runnable {
                 Timer t = new Timer(delay, new LastPlayListener(gamePanels.get(i).getLastPlayPane(), parts, compareNames, compareNames2));
                 t.setRepeats(false);
                 t.start();
-                System.out.println("Changing last play");
+                TimerManager.getInstance().addTimer(t);
             }
 
             compare = nav.getSituation(i);
@@ -347,7 +354,6 @@ public class Manager implements Runnable {
             if (!panel.getGameTime().equals(compare)) {
                 panel.setGameTime(compare);
                 startLabelChange(panel.getGameTimeLabel(), compare);
-                System.out.println("Changing Game Time");
             }
 
             compare = nav.getDownDistance(i);
@@ -355,7 +361,6 @@ public class Manager implements Runnable {
             if (!panel.getGameStatus().equals(compare)) {
                 panel.setGameStatus(compare);
                 startLabelChange(panel.getGameStatusLabel(), compare);
-                System.out.println("Changing Down Distance");
             }
 
             String compare1 = nav.getAwayTeamName(i);
@@ -364,13 +369,11 @@ public class Manager implements Runnable {
             if (!panel.getAwayTeam().equals(compare1)) {
                 panel.setAwayTeam(compare1);
                 startLabelChange(panel.getAwayTeamLabel(), compare1);
-                System.out.println("Changing Away Team");
             }
 
             if (!panel.getHomeTeam().equals(compare2)) {
                 panel.setHomeTeam(compare2);
                 startLabelChange(panel.getHomeTeamLabel(), compare2);
-                System.out.println("Changing Home Team");
             }
 
             compare1 = nav.getAwayScore(j);
@@ -379,13 +382,11 @@ public class Manager implements Runnable {
             if (!panel.getAwayScore().equals(compare1)) {
                 panel.setAwayScore(compare1);
                 startLabelChange(panel.getAwayScoreLabel(), compare1);
-                System.out.println("Changing Away Score");
             }
 
             if (!panel.getHomeScore().equals(compare2)) {
                 panel.setHomeScore(compare2);
                 startLabelChange(panel.getHomeScoreLabel(), compare2);
-                System.out.println("Changing Home Score");
             }
 
             j += 2;
@@ -397,55 +398,47 @@ public class Manager implements Runnable {
         //check if it's different and change if needed
         for (int i = 0; i < infoPanels.size(); i++) {
             TeamInfoPanel panel = infoPanels.get(i);
-            
+
             String compare = nav.getToPlay(i);
             if (!panel.getYetToPlay().equals(compare)) {
                 panel.setYetToPlay(compare);
                 startLabelChange(panel.getToPlay(), compare);
-                System.out.println("Changing To Play");
             }
 
             compare = nav.getInPlay(i);
             if (!panel.getPlaying().equals(compare)) {
                 panel.setPlaying(compare);
                 startLabelChange(panel.getInPlay(), compare);
-                System.out.println("Changing in play");
             }
 
             compare = nav.getProjection(i);
             if (!panel.getCurrentProjection().equals(compare)) {
                 panel.setCurrentProjection(compare);
                 startLabelChange(panel.getProjection(), compare);
-                System.out.println("Changing projection");
             }
 
             compare = nav.getTotalScore(i);
             if (!panel.getCurrentTotalScore().equals(compare)) {
                 panel.setCurrentTotalScore(compare);
                 startLabelChange(panel.getTotalScore(), compare);
-                System.out.println("Changing total score");
             }
         }
 
         int j = 0;
         for (int i = 0; i < 33; i += 2) {
             PlayerPanel panel1 = playerPanels.get(i);
-            PlayerPanel panel2 = playerPanels.get(i+1);
+            PlayerPanel panel2 = playerPanels.get(i + 1);
             String nameCompare1 = nav.getPlayerName(j, 0);
             String nameCompare2 = nav.getPlayerName(j, 1);
 
             if (!panel1.getPlayerName().equals(nameCompare1)) {
                 panel1.setPlayerName(nameCompare1);
                 startLabelChange(panel1.getName(), nameCompare1);
-                System.out.println("Changing Player Name1");
-                //System.out.println("Making a change 11");
             }
 
             if (!panel2.getPlayerName().equals(nameCompare2)) {
                 panel2.setPlayerName(nameCompare2);
                 startLabelChange(panel2.getName(), nameCompare2);
-                System.out.println("Changing Player Name2");
-                //System.out.println("Making a change 12");
             }
 
             //get scores, and also player statuses
@@ -468,15 +461,11 @@ public class Manager implements Runnable {
             if (!panel1.getPlayerScore().equals(scoreCompare1)) {
                 panel1.setPlayerScore(scoreCompare1);
                 startLabelChange(panel1.getScore(), scoreCompare1);
-                System.out.println("Changing Player 1 Scoare");
-                //System.out.println("Making a change 27");
             }
 
             if (!panel2.getPlayerScore().equals(scoreCompare2)) {
                 panel2.setPlayerScore(scoreCompare2);
                 startLabelChange(panel2.getScore(), scoreCompare2);
-                System.out.println("Changing Player 2 Score");
-                //System.out.println("Making a change 28");
             }
 
             //grab player stats
@@ -498,15 +487,11 @@ public class Manager implements Runnable {
             if (!panel1.getPlayerStats().equals(statCompare1)) {
                 panel1.setPlayerStats(statCompare1);
                 startLabelChange(panel1.getStats(), statCompare1);
-                System.out.println("Changing Player 1 Stats");
-                //System.out.println("Making a change 29");
             }
 
             if (!panel2.getPlayerStats().equals(statCompare2)) {
                 panel2.setPlayerStats(statCompare2);
                 startLabelChange(panel2.getStats(), statCompare2);
-                System.out.println("Changing Player 2 Stats");
-                //System.out.println("Making a change 30");
             }
 
             //check if there is any game information and change if needed
@@ -519,15 +504,11 @@ public class Manager implements Runnable {
             if (!panel1.getPlayerGame().equals(gameCompare1)) {
                 panel1.setPlayerGame(gameCompare1);
                 startLabelChange(panel1.getGame(), gameCompare1);
-                System.out.println("Changing Player 1 Game");
-                //System.out.println("Making a change 31");
             }
 
             if (!panel2.getPlayerGame().equals(gameCompare2)) {
                 panel2.setPlayerGame(gameCompare2);
                 startLabelChange(panel2.getGame(), gameCompare2);
-                System.out.println("Changing Player 2 Game");
-                //System.out.println("Making a change 32");
             }
             j++;
         }
@@ -716,27 +697,29 @@ public class Manager implements Runnable {
                     Timer t = new Timer(delay, new ImageChanger(crop, gamePanels.get(i).getPossession()));
                     t.setRepeats(false);
                     t.start();
+                    TimerManager.getInstance().addTimer(t);
 
                     Timer tt = new Timer(delay, new LabelVisibility(gamePanels.get(i).getPossLabel(), true));
                     tt.setRepeats(false);
                     tt.start();
+                    TimerManager.getInstance().addTimer(tt);
 
                     gamePanels.get(i).setImgX(x);
                     gamePanels.get(i).setImgY(y);
-                    System.out.println("Changing Possesion Icon");
                 }
             } catch (Exception e) {
                 if (gamePanels.get(i).getImgX() != -1 || gamePanels.get(i).getImgY() != -1) {
                     Timer t = new Timer(delay, new LabelVisibility(gamePanels.get(i).getPossLabel(), false));
                     t.setRepeats(false);
                     t.start();
+                    TimerManager.getInstance().addTimer(t);
 
                     Timer tt = new Timer(delay, new ImageChanger(null, gamePanels.get(i).getPossession()));
                     tt.setRepeats(false);
                     tt.start();
+                    TimerManager.getInstance().addTimer(tt);
                     gamePanels.get(i).setImgX(-1);
                     gamePanels.get(i).setImgY(-1);
-                    System.out.println("Hiding Poession Icon");
                 }
             }
 
@@ -791,10 +774,10 @@ public class Manager implements Runnable {
                     Timer t = new Timer(delay, new ImageChanger(crop, gamePanels.get(j).getAwayLogo()));
                     t.setRepeats(false);
                     t.start();
+                    TimerManager.getInstance().addTimer(t);
 
                     gamePanels.get(j).setAwayIconX(x);
                     gamePanels.get(j).setAwayIconY(y);
-                    System.out.println("Changing Away Icon");
                 }
 
                 baseString = nav.getTeamLogo(i + 1);
@@ -808,10 +791,10 @@ public class Manager implements Runnable {
                     Timer t = new Timer(delay, new ImageChanger(crop, gamePanels.get(j).getHomeLogo()));
                     t.setRepeats(false);
                     t.start();
+                    TimerManager.getInstance().addTimer(t);
 
                     gamePanels.get(j).setHomeIconX(x);
                     gamePanels.get(j).setHomeIconY(y);
-                    System.out.println("Changing Home Icon");
                 }
                 j++;
             } catch (Exception e) {
@@ -823,29 +806,23 @@ public class Manager implements Runnable {
     public void updateGameState(String gameState, JLabel name, JLabel game, JLabel score, JLabel stats, int i) {
         if (gameState.contains("activegame") && i < 18) { //&& 
             if (!name.getForeground().equals(Color.WHITE)) {
-                //System.out.println("Making a change 23");
                 startLabelColorChange(name, Color.WHITE);
                 startLabelColorChange(score, Color.WHITE);
                 startLabelColorChange(game, Colors.ACTIVEYELLOW);
                 startLabelColorChange(stats, Color.WHITE);
-                System.out.println("Changing to active game");
             }
         } else if (gameState.contains("completedgame") && i < 18) {
             if (!score.getForeground().equals(Colors.POSTYELLOW)) {
-                //System.out.println("Making a comlpeted game change 24");
                 startLabelColorChange(name, Colors.PREGREY);
                 startLabelColorChange(score, Colors.POSTYELLOW);
                 startLabelColorChange(game, Colors.PREYELLOW);
                 startLabelColorChange(stats, Colors.PREGREY);
-                System.out.println("Changing to completed game");
             }
         } else {
             if (!score.getForeground().equals(Colors.PREGREY)) {
-                //System.out.println("Making a change 24");
                 startLabelColorChange(name, Colors.PREGREY);
                 startLabelColorChange(score, Colors.PREGREY);
                 startLabelColorChange(stats, Colors.PREGREY);
-                System.out.println("Changing to pregame");
                 if (i < 18) {
                     startLabelColorChange(game, Colors.PREYELLOW);
                 } else {
@@ -860,21 +837,17 @@ public class Manager implements Runnable {
         if (className.contains("playerOFFENSE") && !className.contains("playerREDZONE")) {
             if (!panel.getBackground().equals(Colors.OFFENSE)) {
                 startColorChange(panel, Colors.OFFENSE);
-                System.out.println("Making Player Offense");
             }
         } else if (className.contains("playerDEFENSE") && !className.contains("playerREDZONE")) {
             if (!panel.getBackground().equals(Colors.DEFENSE)) {
                 startColorChange(panel, Colors.DEFENSE);
-                System.out.println("Making Player Defense");
             }
         } else if (className.contains("playerREDZONE")) {
             if (!panel.getBackground().equals(Colors.REDZONE)) {
                 startColorChange(panel, Colors.REDZONE);
-                System.out.println("Making Player Redzone");
             }
         } else if (!panel.getBackground().equals(Colors.DARKGREY)) {
             startColorChange(panel, Colors.DARKGREY);
-            System.out.println("Making Player Pregame");
         }
     }
 
@@ -888,9 +861,11 @@ public class Manager implements Runnable {
             });
             t2.setRepeats(false);
             t2.start();
+            TimerManager.getInstance().addTimer(t2);
         });
         t1.setRepeats(false);
         t1.start();
+        TimerManager.getInstance().addTimer(t1);
     }
 
     public void checkForScoringNotification() {
@@ -929,22 +904,33 @@ public class Manager implements Runnable {
         Timer t = new Timer(delay, new LabelChanger(label, change));
         t.setRepeats(false);
         t.start();
+        TimerManager.getInstance().addTimer(t);
     }
 
     public static void startColorChange(JPanel panel, Color color) {
         Timer t = new Timer(delay, new ColorChanger(panel, color));
         t.setRepeats(false);
         t.start();
+        TimerManager.getInstance().addTimer(t);
     }
 
     public static void startLabelColorChange(JLabel label, Color color) {
         Timer t = new Timer(delay, new LabelColorChanger(label, color));
         t.setRepeats(false);
         t.start();
+        TimerManager.getInstance().addTimer(t);
     }
 
     public static void close() {
         nav.closeDrivers();
+    }
+
+    public void checkForDelayChange() {
+        if (!mainFrame.getDelayBox().getSelectedItem().equals(Integer.toString(delay / 1000))) {
+            int difference = delay - Integer.parseInt((String) mainFrame.getDelayBox().getSelectedItem()) * 1000;
+            TimerManager.getInstance().changeTimers(difference);
+            delay = Integer.parseInt((String)mainFrame.getDelayBox().getSelectedItem()) * 1000;
+        }
     }
 
 }
