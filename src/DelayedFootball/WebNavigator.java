@@ -28,7 +28,7 @@ public class WebNavigator {
     private Document doc;
 
     public WebNavigator() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "Resources\\Drivers\\chromedriver.exe");
 
         new Thread(() -> {
             chromeOptions = new ChromeOptions();

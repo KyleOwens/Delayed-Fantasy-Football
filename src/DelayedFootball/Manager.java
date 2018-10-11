@@ -110,7 +110,7 @@ public class Manager implements Runnable {
                 frame.setContentPane(frame.getContentPane());
                 frame.addWindowListener(new WindowClosingListener(nav));
                 frame.setTitle("ESPN Delayed Fantasycast");
-                frame.setIconImage(Toolkit.getDefaultToolkit().createImage("Icon.png"));
+                frame.setIconImage(Toolkit.getDefaultToolkit().createImage("Resources\\Icons\\Icon.png"));
                 frame.pack();
                 frame.setVisible(true);
             }
@@ -128,7 +128,7 @@ public class Manager implements Runnable {
                 checkForTeamLogoUpdate(gamePanels);
                 checkForPossessionUpdate(gamePanels);
                 checkForDelayChange();
-                Thread.sleep(100);
+                Thread.sleep(300);
             } catch (Exception e) {
                 break;
             }
@@ -666,7 +666,7 @@ public class Manager implements Runnable {
                 int x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
                 int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
-                BufferedImage source = ImageIO.read(new File("Logos.png"));
+                BufferedImage source = ImageIO.read(new File("Resources\\Pictures\\Logos.png"));
                 BufferedImage crop = source.getSubimage(x, y, 30, 25);
 
                 gamePanels.get(i).getPossession().setIcon(new ImageIcon(crop));
@@ -691,7 +691,7 @@ public class Manager implements Runnable {
                 int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
                 if (gamePanels.get(i).getImgX() != x || gamePanels.get(i).getImgY() != y) {
-                    BufferedImage source = ImageIO.read(new File("Logos.png"));
+                    BufferedImage source = ImageIO.read(new File("Resources\\Pictures\\Logos.png"));
                     BufferedImage crop = source.getSubimage(x, y, 30, 25);
 
                     Timer t = new Timer(delay, new ImageChanger(crop, gamePanels.get(i).getPossession()));
@@ -735,7 +735,7 @@ public class Manager implements Runnable {
                 int x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
                 int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
-                BufferedImage source = ImageIO.read(new File("TeamLogos.png"));
+                BufferedImage source = ImageIO.read(new File("Resources\\Pictures\\TeamLogos.png"));
                 BufferedImage crop = source.getSubimage(x, y, 12, 12);
 
                 gamePanels.get(j).setAwayIconX(x);
@@ -746,7 +746,7 @@ public class Manager implements Runnable {
                 x = Integer.parseInt(baseString.substring(baseString.indexOf(":-") + 2, baseString.indexOf("px")));
                 y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
-                source = ImageIO.read(new File("TeamLogos.png"));
+                source = ImageIO.read(new File("Resources\\Pictures\\TeamLogos.png"));
                 crop = source.getSubimage(x, y, 12, 12);
 
                 gamePanels.get(j).setHomeIconX(x);
@@ -768,7 +768,7 @@ public class Manager implements Runnable {
                 int y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
                 if (gamePanels.get(j).getAwayIconX() != x || gamePanels.get(j).getAwayIconY() != y) {
-                    BufferedImage source = ImageIO.read(new File("TeamLogos.png"));
+                    BufferedImage source = ImageIO.read(new File("Resources\\Pictures\\TeamLogos.png"));
                     BufferedImage crop = source.getSubimage(x, y, 12, 12);
 
                     Timer t = new Timer(delay, new ImageChanger(crop, gamePanels.get(j).getAwayLogo()));
@@ -785,7 +785,7 @@ public class Manager implements Runnable {
                 y = Integer.parseInt(baseString.substring(baseString.indexOf("-", baseString.indexOf("px") + 2) + 1, baseString.indexOf("px", baseString.indexOf("px") + 2)));
 
                 if (gamePanels.get(j).getHomeIconX() != x || gamePanels.get(j).getHomeIconY() != y) {
-                    BufferedImage source = ImageIO.read(new File("TeamLogos.png"));
+                    BufferedImage source = ImageIO.read(new File("Resources\\Pictures\\TeamLogos.png"));
                     BufferedImage crop = source.getSubimage(x, y, 12, 12);
 
                     Timer t = new Timer(delay, new ImageChanger(crop, gamePanels.get(j).getHomeLogo()));
@@ -852,7 +852,13 @@ public class Manager implements Runnable {
     }
 
     public void createNotification(String team1, String team2, String score1, String score2, String notificationText, String gameStatus) {
-        Timer t1 = new Timer(delay, (ActionEvent e) -> {
+        int scoringDelay = 0;
+
+        if (delay - (mainFrame.getScoringOffset() * 1000) > 0) {
+            scoringDelay = delay - (mainFrame.getScoringOffset() * 1000);
+        }
+
+        Timer t1 = new Timer(scoringDelay, (ActionEvent e) -> {
             JDialog notification = new NotificationDialog(mainFrame, false, team1, team2, score1, score2, notificationText, gameStatus);
             notification.setLocation(mainFrame.getX() + mainFrame.getWidth() - notification.getWidth(), mainFrame.getY() + mainFrame.getHeight() - notification.getHeight());
             notification.setVisible(true);
@@ -929,7 +935,7 @@ public class Manager implements Runnable {
         if (!mainFrame.getDelayBox().getSelectedItem().equals(Integer.toString(delay / 1000))) {
             int difference = delay - Integer.parseInt((String) mainFrame.getDelayBox().getSelectedItem()) * 1000;
             TimerManager.getInstance().changeTimers(difference);
-            delay = Integer.parseInt((String)mainFrame.getDelayBox().getSelectedItem()) * 1000;
+            delay = Integer.parseInt((String) mainFrame.getDelayBox().getSelectedItem()) * 1000;
         }
     }
 

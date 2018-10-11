@@ -45,7 +45,7 @@ public class LinkDialog extends javax.swing.JDialog {
         nameLinks = new HashMap<String, String>();
 
         try {
-            con = DriverManager.getConnection("jdbc:sqlite:Links.db");
+            con = DriverManager.getConnection("jdbc:sqlite:Resources\\Properties\\Links.db");
             queryLinks = con.prepareStatement(QUERY_LINKS);
             insertLink = con.prepareStatement(INSERT_LINK);
             deleteLink = con.prepareStatement(DELETE_LINK);
