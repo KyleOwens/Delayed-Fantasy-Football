@@ -174,7 +174,7 @@ public class LinkDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+       
     private void newButtonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonPressed
 
         NewLinkPanel newLink = new NewLinkPanel();
