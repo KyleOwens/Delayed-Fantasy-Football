@@ -27,8 +27,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -38,7 +36,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
-import javax.swing.Timer;
 import javax.swing.WindowConstants;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
@@ -130,6 +127,7 @@ public class Manager implements Runnable {
                 checkForDelayChange();
                 Thread.sleep(300);
             } catch (Exception e) {
+                e.printStackTrace();
                 break;
             }
         }
@@ -339,7 +337,7 @@ public class Manager implements Runnable {
 
                 panel.setLastPlay(nav.getLastPlay(i));
                 //execute the update
-                Timer t = new Timer(delay, new LastPlayListener(gamePanels.get(i).getLastPlayPane(), parts, compareNames, compareNames2));
+                FantasyTimer t = new FantasyTimer(delay, new LastPlayListener(gamePanels.get(i).getLastPlayPane(), parts, compareNames, compareNames2));
                 t.setRepeats(false);
                 t.start();
                 TimerManager.getInstance().addTimer(t);
@@ -694,12 +692,12 @@ public class Manager implements Runnable {
                     BufferedImage source = ImageIO.read(new File("Resources\\Pictures\\Logos.png"));
                     BufferedImage crop = source.getSubimage(x, y, 30, 25);
 
-                    Timer t = new Timer(delay, new ImageChanger(crop, gamePanels.get(i).getPossession()));
+                    FantasyTimer t = new FantasyTimer(delay, new ImageChanger(crop, gamePanels.get(i).getPossession()));
                     t.setRepeats(false);
                     t.start();
                     TimerManager.getInstance().addTimer(t);
 
-                    Timer tt = new Timer(delay, new LabelVisibility(gamePanels.get(i).getPossLabel(), true));
+                    FantasyTimer tt = new FantasyTimer(delay, new LabelVisibility(gamePanels.get(i).getPossLabel(), true));
                     tt.setRepeats(false);
                     tt.start();
                     TimerManager.getInstance().addTimer(tt);
@@ -709,12 +707,12 @@ public class Manager implements Runnable {
                 }
             } catch (Exception e) {
                 if (gamePanels.get(i).getImgX() != -1 || gamePanels.get(i).getImgY() != -1) {
-                    Timer t = new Timer(delay, new LabelVisibility(gamePanels.get(i).getPossLabel(), false));
+                    FantasyTimer t = new FantasyTimer(delay, new LabelVisibility(gamePanels.get(i).getPossLabel(), false));
                     t.setRepeats(false);
                     t.start();
                     TimerManager.getInstance().addTimer(t);
 
-                    Timer tt = new Timer(delay, new ImageChanger(null, gamePanels.get(i).getPossession()));
+                    FantasyTimer tt = new FantasyTimer(delay, new ImageChanger(null, gamePanels.get(i).getPossession()));
                     tt.setRepeats(false);
                     tt.start();
                     TimerManager.getInstance().addTimer(tt);
@@ -771,7 +769,7 @@ public class Manager implements Runnable {
                     BufferedImage source = ImageIO.read(new File("Resources\\Pictures\\TeamLogos.png"));
                     BufferedImage crop = source.getSubimage(x, y, 12, 12);
 
-                    Timer t = new Timer(delay, new ImageChanger(crop, gamePanels.get(j).getAwayLogo()));
+                    FantasyTimer t = new FantasyTimer(delay, new ImageChanger(crop, gamePanels.get(j).getAwayLogo()));
                     t.setRepeats(false);
                     t.start();
                     TimerManager.getInstance().addTimer(t);
@@ -788,7 +786,7 @@ public class Manager implements Runnable {
                     BufferedImage source = ImageIO.read(new File("Resources\\Pictures\\TeamLogos.png"));
                     BufferedImage crop = source.getSubimage(x, y, 12, 12);
 
-                    Timer t = new Timer(delay, new ImageChanger(crop, gamePanels.get(j).getHomeLogo()));
+                    FantasyTimer t = new FantasyTimer(delay, new ImageChanger(crop, gamePanels.get(j).getHomeLogo()));
                     t.setRepeats(false);
                     t.start();
                     TimerManager.getInstance().addTimer(t);
@@ -858,11 +856,11 @@ public class Manager implements Runnable {
             scoringDelay = delay - (mainFrame.getScoringOffset() * 1000);
         }
 
-        Timer t1 = new Timer(scoringDelay, (ActionEvent e) -> {
+        FantasyTimer t1 = new FantasyTimer(scoringDelay, (ActionEvent e) -> {
             JDialog notification = new NotificationDialog(mainFrame, false, team1, team2, score1, score2, notificationText, gameStatus);
             notification.setLocation(mainFrame.getX() + mainFrame.getWidth() - notification.getWidth(), mainFrame.getY() + mainFrame.getHeight() - notification.getHeight());
             notification.setVisible(true);
-            Timer t2 = new Timer(10000, (ev) -> {
+            FantasyTimer t2 = new FantasyTimer(10000, (ev) -> {
                 notification.dispose();
             });
             t2.setRepeats(false);
@@ -907,21 +905,21 @@ public class Manager implements Runnable {
     }
 
     public void startLabelChange(JLabel label, String change) {
-        Timer t = new Timer(delay, new LabelChanger(label, change));
+        FantasyTimer t = new FantasyTimer(delay, new LabelChanger(label, change));
         t.setRepeats(false);
         t.start();
         TimerManager.getInstance().addTimer(t);
     }
 
     public static void startColorChange(JPanel panel, Color color) {
-        Timer t = new Timer(delay, new ColorChanger(panel, color));
+        FantasyTimer t = new FantasyTimer(delay, new ColorChanger(panel, color));
         t.setRepeats(false);
         t.start();
         TimerManager.getInstance().addTimer(t);
     }
 
     public static void startLabelColorChange(JLabel label, Color color) {
-        Timer t = new Timer(delay, new LabelColorChanger(label, color));
+        FantasyTimer t = new FantasyTimer(delay, new LabelColorChanger(label, color));
         t.setRepeats(false);
         t.start();
         TimerManager.getInstance().addTimer(t);

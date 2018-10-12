@@ -22,7 +22,7 @@ import org.jsoup.select.Elements;
  * @author Kyle
  */
 public class LastPlayListener implements ActionListener {
-
+    private int startTime;
     private JTextPane jtp;
     private ArrayList<String> parts;
     private ArrayList<String> compareNames;
@@ -33,8 +33,12 @@ public class LastPlayListener implements ActionListener {
         this.parts = parts;
         this.compareNames = compareNames;
         this.compareNames2 = compareNames2;
+        startTime = (int) System.currentTimeMillis();
     }
 
+    public int getTimeRemaining(){
+        return (int) (startTime - System.currentTimeMillis());
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         jtp.setText("");
