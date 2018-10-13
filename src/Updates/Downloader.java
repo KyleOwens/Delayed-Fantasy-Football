@@ -26,7 +26,8 @@ public class Downloader {
     public static final String SWITCHERON = "https://drive.google.com/uc?export=download&id=1Erx3_DGdzhwCKY30yWPrdyIekalEVdvB";
     public static final String LOGOS = "https://drive.google.com/uc?export=download&id=1R-AM7oZ8NVsl6aZeHapfUCS7dsJDBjeg";
     public static final String TEAMLOGOS = "https://drive.google.com/uc?export=download&id=1qk_aIvX883GenZPNBoGcWxzyJR6IM-cb";
-
+    public static final String VERSIONS = "https://drive.google.com/uc?export=download&id=1oUjnf2oU1PGJ1RjtE4r79vrt8aCLxzKB";
+    public static final String UPDATERJAR = "https://drive.google.com/uc?export=download&id=1AJVXmKHK6rAw61gxWbD1L8OmTAoh3gct";
     public Downloader() {
 
     }

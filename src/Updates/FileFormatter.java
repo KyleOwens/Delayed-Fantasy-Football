@@ -19,6 +19,7 @@ public class FileFormatter {
     private static final String iconDirectory = resourceDirectory + "\\Icons";
     private static final String pictureDirectory = resourceDirectory + "\\Pictures";
     private static final String propertyDirectory = resourceDirectory + "\\Properties";
+    private static final String versionDirectory = resourceDirectory + "\\Versioning";
 
     private static final String chromeDriver = driverDirectory + "\\chromedriver.exe";
     private static final String geckoDriver = driverDirectory + "\\geckodriver.exe";
@@ -33,6 +34,9 @@ public class FileFormatter {
 
     private static final String links = propertyDirectory + "\\Links.db";
 
+    private static final String versions = versionDirectory + "\\Versions.txt";
+    private static final String jarDownloader = "JARDownloader.jar";
+
     private Downloader downloader;
 
     public FileFormatter() {
@@ -45,6 +49,7 @@ public class FileFormatter {
         checkIcons();
         checkPictures();
         checkProperties();
+        checkVersioning();
     }
 
     private void addToList() {
@@ -80,6 +85,12 @@ public class FileFormatter {
         if (!directory.exists()) {
             directory.mkdir();
             System.out.println("Made Property Directory");
+        }
+
+        directory = new File(versionDirectory);
+        if (!directory.exists()) {
+            directory.mkdir();
+            System.out.println("Made Version Directory");
         }
     }
 
@@ -176,6 +187,40 @@ public class FileFormatter {
             if (temp.exists()) {
                 temp.renameTo(new File(links));
             }
+        }
+    }
+
+    private void checkVersioning() {
+        File directory = new File(versions);
+        File oldVersions = new File("Resources\\Versioning\\oldVersions.txt");
+        boolean renamed = false;
+        if (directory.exists()) {
+            try {
+                directory.renameTo(oldVersions);
+                renamed = true;
+            } catch (Exception e) {
+                System.out.println("Cannot rename file");
+                System.exit(0);
+            }
+        }
+
+        try {
+            if (renamed) {
+                oldVersions.delete();
+            }
+            downloader.downloadFile(Downloader.VERSIONS, new File("Resources\\Versioning\\Versions.txt"));
+
+        } catch (Exception e) {
+            System.out.println("Couldn't Download File");
+            if (renamed) {
+                directory.renameTo(new File("Resources\\Versioning\\Versions.txt"));
+            }
+            System.exit(0);
+        }
+
+        directory = new File(jarDownloader);
+        if (!directory.exists()) {
+            downloader.downloadFile(Downloader.UPDATERJAR, directory);
         }
     }
 

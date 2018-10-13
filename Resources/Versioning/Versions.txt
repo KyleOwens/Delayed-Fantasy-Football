@@ -1,0 +1,5 @@
+Jar Version = 1.0
+Updater Version = 1.0
+
+jar id = 13P8A8RDKRcdQYbacT-RMUfETJhfZsRsL
+updater id = 1AJVXmKHK6rAw61gxWbD1L8OmTAoh3gct

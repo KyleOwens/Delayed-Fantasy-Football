@@ -7,6 +7,7 @@ package DelayedFootball;
 
 import DelayedFootball.UserInterfaces.ErrorDialog;
 import Updates.FileFormatter;
+import Updates.VersionChecker;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -18,10 +19,12 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class DelayedFantasyFootball {
 
-    public static void main(String[] args) throws IOException {
-        FileFormatter dependencyCheck = new FileFormatter();
-        
+    public static void main(String[] args) throws IOException {        
+        FileFormatter dependencyCheck = new FileFormatter();        
         dependencyCheck.checkForFiles();
+        
+        VersionChecker vc = new VersionChecker();
+        vc.checkForUpdates();
         
         try {
             UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel");
